@@ -9,7 +9,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta charset="utf-8" />
-    <title>Dashboard - Ace Admin</title>
+    <title>Smileher论坛后台管理系统</title>
 
     <meta name="description" content="overview &amp; stats" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -46,7 +46,7 @@
     <!-- #section:basics/navbar.layout -->
     <div id="navbar" class="navbar navbar-default">
         <script type="text/javascript">
-				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+            try { ace.settings.check('navbar', 'fixed') } catch (e) { }
         </script>
 
         <div class="navbar-container" id="navbar-container">
@@ -64,10 +64,10 @@
             <!-- /section:basics/sidebar.mobile.toggle -->
             <div class="navbar-header pull-left">
                 <!-- #section:basics/navbar.layout.brand -->
-                <a href="#" class="navbar-brand">
+                <a href="/Admin/Home/Index" class="navbar-brand">
                     <small>
                         <i class="fa fa-leaf"></i>
-                        Smileher论坛管理后台
+                        Smileher论坛后台管理系统
                     </small>
                 </a>
 
@@ -340,7 +340,7 @@
                             <img class="nav-user-photo" src="/Areas/Admin/Assets/images/avatars/user.jpg" alt="Jason's Photo" />
                             <span class="user-info">
                                 <small>你好,</small>
-                                张三
+                                Smileher
                             </span>
 
                             <i class="ace-icon fa fa-caret-down"></i>
@@ -355,7 +355,7 @@
                             </li>
 
                             <li>
-                                <a href="profile.html">
+                                <a href="#">
                                     <i class="ace-icon fa fa-user"></i>
                                     个人信息
                                 </a>
@@ -364,7 +364,7 @@
                             <li class="divider"></li>
 
                             <li>
-                                <a href="login.html">
+                                <a href="#">
                                     <i class="ace-icon fa fa-power-off"></i>
                                     退出
                                 </a>
@@ -383,40 +383,44 @@
     <!-- /section:basics/navbar.layout -->
     <div class="main-container" id="main-container">
         <script type="text/javascript">
-				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+            try { ace.settings.check('main-container', 'fixed') } catch (e) { }
         </script>
 
         <!-- #section:basics/sidebar -->
-        <div id="sidebar" class="sidebar                  responsive ">
+        <div id="sidebar" class="sidebar responsive ">
             <script type="text/javascript">
-					try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+                try { ace.settings.check('sidebar', 'fixed') } catch (e) { }
             </script>
 
             <div class="sidebar-shortcuts" id="sidebar-shortcuts">
-                <h5 class="blue">栏目管理</h5>
+                <h5 class="blue"><a href="/Admin/Home/Index">首页</a></h5>
             </div><!-- /.sidebar-shortcuts -->
 
             <ul class="nav nav-list">
-                <li class="active open">
-                    <a href="#" class="dropdown-toggle"> <i class="menu-icon fa a1"></i> <span class="menu-text">帖子管理 </span><b class="arrow fa fa-angle-down"></b> </a> <b class="arrow"></b>
+                <li class="submenu">
+                    @* active open为默认打开 *@
+                    <a href="#" class="dropdown-toggle"> <i class="menu-icon fa a1"></i><span class="menu-text">帖子管理</span><b class="arrow fa fa-angle-down"></b></a><b class="arrow"></b>
                     <ul class="submenu">
-                        <li class="active"> <a href="/admin/post/index"> <i class="menu-icon fa fa-caret-right"></i> 帖子管理 </a> <b class="arrow"></b></li>
-                        <li class=""> <a href="order_detail.html"> <i class="menu-icon fa fa-caret-right"></i> 分类管理 </a> <b class="arrow"></b></li>
+                        <li class=""> <a href="/admin/post/index"> <i class="menu-icon fa fa-caret-right"></i>帖子列表</a><b class="arrow"></b></li>
+                        <li class=""> <a href="/admin/post/index"> <i class="menu-icon fa fa-caret-right"></i>删帖记录</a><b class="arrow"></b></li>
+                        <li class=""> <a href="/admin/post/index"> <i class="menu-icon fa fa-caret-right"></i>分类管理</a><b class="arrow"></b></li>
                     </ul>
                 </li>
                 <li class="">
-                    <a href="#" class="dropdown-toggle"> <i class="menu-icon fa a2"></i> <span class="menu-text"> 用户管理 </span> <b class="arrow fa fa-angle-down"></b></a> <b class="arrow"></b>
+                    <a href="#" class="dropdown-toggle"> <i class="menu-icon fa a2"></i><span class="menu-text">用户管理</span> <b class="arrow fa fa-angle-down"></b></a> <b class="arrow"></b>
                     <ul class="submenu">
-                        <li class=""> <a href="#"> <i class="menu-icon fa fa-caret-right"></i> 用户列表 </a> <b class="arrow"></b></li>
-                        <li class=""> <a href="#"> <i class="menu-icon fa fa-caret-right"></i> 用户级别 </a> <b class="arrow"></b></li>
-                        <li class=""> <a href="#"> <i class="menu-icon fa fa-caret-right"></i> 用户收藏列表 </a> <b class="arrow"></b></li>
-                        <li class=""> <a href="#"> <i class="menu-icon fa fa-caret-right"></i> 用户点赞列表 </a> <b class="arrow"></b></li>
+                        <li class=""> <a href="/admin/user/index"> <i class="menu-icon fa fa-caret-right"></i>用户列表</a><b class="arrow"></b></li>
+                        <li class=""> <a href="/admin/user/index"> <i class="menu-icon fa fa-caret-right"></i>用户级别</a><b class="arrow"></b></li>
+                        <li class=""> <a href="/admin/user/index"> <i class="menu-icon fa fa-caret-right"></i>用户收藏列表</a><b class="arrow"></b></li>
+                        <li class=""> <a href="/admin/user/index"> <i class="menu-icon fa fa-caret-right"></i>用户点赞列表</a><b class="arrow"></b></li>
                     </ul>
                 </li>
                 <li class="">
-                    <a href="#" class="dropdown-toggle"> <i class="menu-icon fa a7"></i> <span class="menu-text"> 设置 </span> <b class="arrow fa fa-angle-down"></b> </a> <b class="arrow"></b>
+                    <a href="#" class="dropdown-toggle"> <i class="menu-icon fa a7"></i><span class="menu-text">其他信息</span> <b class="arrow fa fa-angle-down"></b></a><b class="arrow"></b>
                     <ul class="submenu">
-                        <li class=""> <a href="sco_info.html"> <i class="menu-icon fa fa-caret-right"></i> 公司信息 </a> <b class="arrow"></b> </li>
+                        <li class=""> <a href="#"> <i class="menu-icon fa fa-caret-right"></i>论坛信息</a><b class="arrow"></b> </li>
+                        <li class=""> <a href="#"> <i class="menu-icon fa fa-caret-right"></i>开发人员</a><b class="arrow"></b> </li>
+                        <li class=""> <a href="#"> <i class="menu-icon fa fa-caret-right"></i>数据统计</a><b class="arrow"></b> </li>
                     </ul>
                 </li>
             </ul><!-- /.nav-list -->
@@ -427,57 +431,34 @@
 
             <!-- /section:basics/sidebar.layout.minimize -->
             <script type="text/javascript">
-					try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
+                try { ace.settings.check('sidebar', 'collapsed') } catch (e) { }
             </script>
         </div>
-
-        <!-- /section:basics/sidebar -->
-        <div class="main-content">
-            <div class="main-content-inner">
-                <!-- #section:basics/content.breadcrumbs -->
-                <div class="breadcrumbs" id="breadcrumbs">
-                    <script type="text/javascript">
-							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
-                    </script>
-
-                    <ul class="breadcrumb">
-                        <li> <i class="ace-icon fa fa-home home-icon"></i> <a href="#">首页</a> </li>
-                        <li> <a href="#">订单</a> </li>
-                        <li class="active">订货单</li>
-                    </ul><!-- /.breadcrumb -->
-
-                </div>
-
-                <!-- /section:basics/content.breadcrumbs -->
-                @RenderBody()
-            </div>
-        </div><!-- /.main-content -->
-
+        @RenderBody()
         <div class="footer">
             <div class="footer-inner">
                 <!-- #section:basics/footer -->
                 <div class="footer-content">
                     <span class="bigger-120">
-                        <span class="blue bolder">Ace</span>
-                        Application &copy; 2013-2014
+                        <span class="blue bolder"><a href="http://www.smilehe.website/" target="view_window">Smileher</a></span>
+                       Company &copy; 1996-2017
                     </span>
 
                     &nbsp; &nbsp;
                     <span class="action-buttons">
                         <a href="#">
-                            <i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
+                            <i class="ace-icon fa fa-qq bigger-150"></i>
                         </a>
 
                         <a href="#">
-                            <i class="ace-icon fa fa-facebook-square text-primary bigger-150"></i>
+                            <i class="ace-icon fa fa-weixin bigger-150"></i>
                         </a>
 
                         <a href="#">
-                            <i class="ace-icon fa fa-rss-square orange bigger-150"></i>
+                            <i class="ace-icon fa fa-phone-square bigger-150"></i>
                         </a>
                     </span>
                 </div>
-
                 <!-- /section:basics/footer -->
             </div>
         </div>
@@ -489,7 +470,7 @@
     <!-- basic scripts -->
     <!--[if !IE]> -->
     <script type="text/javascript">
-        window.jQuery || document.write("<script src='/Areas/Admin/Assets/scripts/jquery.js'>" + "<" + "/script>");
+                window.jQuery || document.write("<script src='/Areas/Admin/Assets/scripts/jquery.js'>" + "<" + "/script>");
     </script>
 
     <!-- <![endif]-->
@@ -499,7 +480,7 @@
     </script>
     <![endif]-->
     <script type="text/javascript">
-        if ('ontouchstart' in document.documentElement) document.write("<script src='/Areas/Admin/Assets/scripts/jquery.mobile.custom.js'>" + "<" + "/script>");
+                if ('ontouchstart' in document.documentElement) document.write("<script src='/Areas/Admin/Assets/scripts/jquery.mobile.custom.js'>" + "<" + "/script>");
     </script>
     <script src="/Areas/Admin/Assets/scripts/bootstrap.js"></script>
 
@@ -543,49 +524,48 @@
     <!-- inline scripts related to this page -->
     <script>
 
-		jQuery(function($) {
-				var oTable1 =
-				$('#sample-table-2')
-				.dataTable( {
-					bAutoWidth: false,
-					"aoColumns": [
-					  { "bSortable": false },
-					  null, null,null, null, null,
-					  { "bSortable": false }
-					],
-					"aaSorting": [],
+                jQuery(function ($) {
+                    var oTable1 =
+                        $('#sample-table-2')
+                            .dataTable({
+                                bAutoWidth: false,
+                                "aoColumns": [
+                                    { "bSortable": false },
+                                    null, null, null, null, null,
+                                    { "bSortable": false }
+                                ],
+                                "aaSorting": [],
 
-			    } );
-
-
-		 	$(document).on('click', 'th input:checkbox' , function(){
-					var that = this;
-					$(this).closest('table').find('tr > td:first-child input:checkbox')
-					.each(function(){
-						this.checked = that.checked;
-						$(this).closest('tr').toggleClass('selected');
-					});
-				});
+                            });
 
 
+                    $(document).on('click', 'th input:checkbox', function () {
+                        var that = this;
+                        $(this).closest('table').find('tr > td:first-child input:checkbox')
+                            .each(function () {
+                                this.checked = that.checked;
+                                $(this).closest('tr').toggleClass('selected');
+                            });
+                    });
 
-				$('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
-				function tooltip_placement(context, source) {
-					var $source = $(source);
-					var $parent = $source.closest('table')
-					var off1 = $parent.offset();
-					var w1 = $parent.width();
 
-					var off2 = $source.offset();
-					//var w2 = $source.width();
 
-					if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
-					return 'left';
-				}
+                    $('[data-rel="tooltip"]').tooltip({ placement: tooltip_placement });
+                    function tooltip_placement(context, source) {
+                        var $source = $(source);
+                        var $parent = $source.closest('table')
+                        var off1 = $parent.offset();
+                        var w1 = $parent.width();
 
-			})
+                        var off2 = $source.offset();
+                        //var w2 = $source.width();
+
+                        if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2)) return 'right';
+                        return 'left';
+                    }
+
+                })
     </script>
-
     <!-- the following scripts are used in demo only for onpage help and you don't need them -->
     <link rel="stylesheet" href="/Areas/Admin/Assets/styles/ace.onpage-help.css" />
 
@@ -596,5 +576,3 @@
 
 </body>
 </html>
-
-

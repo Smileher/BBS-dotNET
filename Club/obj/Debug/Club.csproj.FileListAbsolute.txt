@@ -109,3 +109,4 @@ E:\Documents\Project\bbs.bangke.com\Club\bin\Club.pdb
 E:\Documents\Project\bbs.bangke.com\Club\obj\Debug\Club.csproj.CoreCompileInputs.cache
 E:\Documents\Project\bbs.bangke.com\Club\obj\Debug\Club.dll
 E:\Documents\Project\bbs.bangke.com\Club\obj\Debug\Club.pdb
+E:\Documents\Project\bbs.bangke.com\Club\obj\Debug\Club.csprojResolveAssemblyReference.cache
