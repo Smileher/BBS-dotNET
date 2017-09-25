@@ -6,14 +6,22 @@ using System.Web.Mvc;
 
 namespace Club.Areas.Admin.Controllers
 {
-    public class PostController : Controller
+    public class PostController:Controller
     {
         /// <summary>
-        /// 帖子列表
+        /// 帖子管理
         /// </summary>
         /// <returns></returns>
-        public ActionResult Index()
-        {
+        public ActionResult Index() {
+            // 帖子列表
+            return View();
+        }
+        public ActionResult Status() {
+            // 审核删帖
+            return View();
+        }
+        public ActionResult Category() {
+            // 分类管理
             return View();
         }
     }
