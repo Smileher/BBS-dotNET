@@ -24,5 +24,7 @@ namespace Club.Areas.Admin.Controllers
             // 分类管理
             return View();
         }
+
+
     }
 }

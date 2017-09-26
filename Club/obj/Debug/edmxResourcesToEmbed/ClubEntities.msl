@@ -71,6 +71,7 @@
     <EntitySetMapping Name="User">
       <EntityTypeMapping TypeName="bbs.bangke.comModel.User">
         <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="IsAbort" ColumnName="IsAbort" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Account" ColumnName="Account" />

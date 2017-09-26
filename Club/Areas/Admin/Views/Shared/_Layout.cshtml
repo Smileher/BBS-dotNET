@@ -24,7 +24,35 @@
 
     <!-- ace styles -->
     <link rel="stylesheet" href="/Areas/Admin/Assets/styles/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
+    <!--[if !IE]> -->
+    <script type="text/javascript">
+        window.jQuery || document.write("<script src='/Areas/Admin/Assets/scripts/jquery.js'>" + "<" + "/script>");
+    </script>
 
+    <!-- <![endif]-->
+    <!--[if IE]>
+    <script type="text/javascript">
+     window.jQuery || document.write("<script src='../assets/js/jquery1x.js'>"+"<"+"/script>");
+    </script>
+    <![endif]-->
+    <script type="text/javascript">
+        if ('ontouchstart' in document.documentElement) document.write("<script src='/Areas/Admin/Assets/scripts/jquery.mobile.custom.js'>" + "<" + "/script>");
+    </script>
+    <script src="/Areas/Admin/Assets/scripts/bootstrap.js"></script>
+
+    <!-- page specific plugin scripts -->
+    <!--[if lte IE 8]>
+      <script src="/Areas/Admin/Assets/scripts/excanvas.js"></script>
+    <![endif]-->
+    <script src="/Areas/Admin/Assets/scripts/jquery-ui.custom.js"></script>
+    <script src="/Areas/Admin/Assets/scripts/jquery.ui.touch-punch.js"></script>
+    <script src="/Areas/Admin/Assets/scripts/jquery.easypiechart.js"></script>
+    <script src="/Areas/Admin/Assets/scripts/jquery.sparkline.js"></script>
+    <script src="/Areas/Admin/Assets/scripts/flot/jquery.flot.js"></script>
+    <script src="/Areas/Admin/Assets/scripts/flot/jquery.flot.pie.js"></script>
+    <script src="/Areas/Admin/Assets/scripts/flot/jquery.flot.resize.js"></script>
+    <script src="/Areas/Admin/Assets/scripts/jquery.dataTables.js"></script>
+    <script src="/Areas/Admin/Assets/scripts/jquery.dataTables.bootstrap.js"></script>
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="/Areas/Admin/Assets/styles/ace-part2.css" class="ace-main-stylesheet" />
     <![endif]-->
@@ -466,36 +494,7 @@
             <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
         </a>
     </div><!-- /.main-container -->
-    <!-- basic scripts -->
-    <!--[if !IE]> -->
-    <script type="text/javascript">
-                window.jQuery || document.write("<script src='/Areas/Admin/Assets/scripts/jquery.js'>" + "<" + "/script>");
-    </script>
-
-    <!-- <![endif]-->
-    <!--[if IE]>
-    <script type="text/javascript">
-     window.jQuery || document.write("<script src='../assets/js/jquery1x.js'>"+"<"+"/script>");
-    </script>
-    <![endif]-->
-    <script type="text/javascript">
-                if ('ontouchstart' in document.documentElement) document.write("<script src='/Areas/Admin/Assets/scripts/jquery.mobile.custom.js'>" + "<" + "/script>");
-    </script>
-    <script src="/Areas/Admin/Assets/scripts/bootstrap.js"></script>
-
-    <!-- page specific plugin scripts -->
-    <!--[if lte IE 8]>
-      <script src="/Areas/Admin/Assets/scripts/excanvas.js"></script>
-    <![endif]-->
-    <script src="/Areas/Admin/Assets/scripts/jquery-ui.custom.js"></script>
-    <script src="/Areas/Admin/Assets/scripts/jquery.ui.touch-punch.js"></script>
-    <script src="/Areas/Admin/Assets/scripts/jquery.easypiechart.js"></script>
-    <script src="/Areas/Admin/Assets/scripts/jquery.sparkline.js"></script>
-    <script src="/Areas/Admin/Assets/scripts/flot/jquery.flot.js"></script>
-    <script src="/Areas/Admin/Assets/scripts/flot/jquery.flot.pie.js"></script>
-    <script src="/Areas/Admin/Assets/scripts/flot/jquery.flot.resize.js"></script>
-    <script src="/Areas/Admin/Assets/scripts/jquery.dataTables.js"></script>
-    <script src="/Areas/Admin/Assets/scripts/jquery.dataTables.bootstrap.js"></script>
+    <!-- basic scripts -->    
 
     <!-- ace scripts -->
     <script src="/Areas/Admin/Assets/scripts/ace/elements.scroller.js"></script>

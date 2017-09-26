@@ -87,6 +87,7 @@
     <NavigationProperty Name="Level" Relationship="Self.FK_User_Level1" FromRole="User" ToRole="Level" />
     <NavigationProperty Name="Post" Relationship="Self.FK_Post_User" FromRole="User" ToRole="Post" />
     <NavigationProperty Name="PraiseRecord" Relationship="Self.FK_PraiseRecord_User" FromRole="User" ToRole="PraiseRecord" />
+    <Property Name="IsAbort" Type="Boolean" Nullable="false" />
   </EntityType>
   <Association Name="FK_Post_Category">
     <End Role="Category" Type="Self.Category" Multiplicity="1" />

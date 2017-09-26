@@ -30,6 +30,7 @@ namespace Club
         public int Integral { get; set; }
         public string Image { get; set; }
         public int IsAdmin { get; set; }
+        public bool IsAbort { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Collection> Collection { get; set; }

@@ -73,6 +73,7 @@
     <Property Name="Integral" Type="int" Nullable="false" />
     <Property Name="Image" Type="nvarchar" MaxLength="50" />
     <Property Name="IsAdmin" Type="int" Nullable="false" />
+    <Property Name="IsAbort" Type="bit" Nullable="false" />
   </EntityType>
   <Association Name="FK_Collection_Post">
     <End Role="Post" Type="Self.Post" Multiplicity="1" />

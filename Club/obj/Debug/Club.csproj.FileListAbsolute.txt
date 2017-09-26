@@ -110,3 +110,4 @@ E:\Documents\Project\bbs.bangke.com\Club\obj\Debug\Club.csproj.CoreCompileInputs
 E:\Documents\Project\bbs.bangke.com\Club\obj\Debug\Club.dll
 E:\Documents\Project\bbs.bangke.com\Club\obj\Debug\Club.pdb
 E:\Documents\Project\bbs.bangke.com\Club\obj\Debug\Club.csprojResolveAssemblyReference.cache
+E:\Documents\Project\bbs.bangke.com\Club\bin\Webdiyer.MvcPager.dll
