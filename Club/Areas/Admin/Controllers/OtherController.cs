@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Club.Areas.Admin.Controllers
 {
-    public class OtherController : Controller
+    public class OtherController :BaseController
     {
         // GET: Admin/Other
         public ActionResult Index()

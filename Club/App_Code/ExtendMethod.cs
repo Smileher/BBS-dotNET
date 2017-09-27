@@ -1,5 +1,4 @@
 ﻿using System;
-
 namespace Club
 {
     public static class ExtendMethod
@@ -12,6 +11,7 @@ namespace Club
             }
             catch(Exception ex) {
                 return result;
+
             }
         }
 

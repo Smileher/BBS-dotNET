@@ -28,6 +28,7 @@ namespace Club
         public string PassWord { get; set; }
         public int LevelId { get; set; }
         public int Integral { get; set; }
+        public object integral { get; internal set; }
         public string Image { get; set; }
         public int IsAdmin { get; set; }
         public bool IsAbort { get; set; }

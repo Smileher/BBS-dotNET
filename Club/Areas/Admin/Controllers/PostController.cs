@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Club.Areas.Admin.Controllers
 {
-    public class PostController:Controller
+    public class PostController:BaseController
     {
         /// <summary>
         /// 帖子管理

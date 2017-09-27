@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using Club;
 using System.Web.Mvc;
 using System.Web.WebPages;
 using Webdiyer.WebControls.Mvc;
 
 namespace Club.Areas.Admin.Controllers
 {
-    public class UserController:Controller
+    public class UserController:BaseController
     {
         // GET: Admin/User
         /// <summary>
@@ -99,8 +100,93 @@ namespace Club.Areas.Admin.Controllers
         /// 修改用户资料
         /// </summary>
         /// <returns></returns>
+        [HttpGet]
         public ActionResult Edit() {
-            return View();
+            var Id = Request["Id"].ToInt();
+            ViewData["title"] = "编辑用户";
+            using(var db = new Entities()) {
+                var user = db.User.Include(a => a.Level).FirstOrDefault(a => a.Id == Id);
+
+
+                var selectItems = new List<SelectListItem>();
+
+                var levels = db.Level.ToList();
+
+                foreach(var level in levels) {
+                    var selectItem = new SelectListItem();
+                    selectItem.Text = level.Name;
+                    selectItem.Value = level.Id.ToString();
+                    if(user != null && (user.LevelId == level.Id)) {
+                        selectItem.Selected = true;
+                    }
+                    selectItems.Add(selectItem);
+                }
+
+                ViewBag.SeletItems = selectItems;
+
+                if(user == null) {
+                    user = new User();
+                    ViewData["title"] = "新增用户";
+                }
+
+
+                return View(user);
+            }
+
         }
+
+        [HttpPost]
+        public ActionResult Save() {
+            var id = Request["id"].ToInt();
+            var name = Request["name"];
+            var account = Request["account"];
+            var levelId = Request["levelId"].ToInt();
+            var integral = Request["integral"].ToInt();
+            var image = Request["image"];
+
+
+            using(var db = new Entities()) {
+                var user = db.User.FirstOrDefault(a => a.Id == id);
+
+                if(user == null) {
+                    user = new User();
+                    user.Account = account;
+                    user.IsAdmin = false;
+                    user.PassWord = "000000";
+                    db.User.Add(user);
+                }
+
+                user.Name = name;
+                user.LevelId = levelId;
+                user.integral = integral;
+                user.Image = image;
+                db.SaveChanges();
+
+                ShowMassage("操作成功");
+            }
+
+            //if (id == 0)
+            //{
+            //    using (var db = new ClubEntities())
+            //    {
+            //        var user = new User();
+            //        user.Name = name;
+            //        user.Account = account;
+            //        user.LevelId = levelId;
+            //        user.integral = integral;
+            //        user.Image = image;
+            //        user.IsAdmin = false;
+            //        user.PassWord = "000000";
+
+            //        db.User.Add(user);
+
+            //        db.SaveChanges();
+
+            //        ShowMassage("新增成功");
+            //    }
+            //}
+            return RedirectToAction("Index");
+        }
+
     }
 }
