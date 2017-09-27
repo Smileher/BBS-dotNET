@@ -95,5 +95,12 @@ namespace Club.Areas.Admin.Controllers
         public ActionResult Details() {
             return View();
         }
+        /// <summary>
+        /// 修改用户资料
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Edit() {
+            return View();
+        }
     }
 }

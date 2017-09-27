@@ -518,23 +518,24 @@
     <script src="/Areas/Admin/Assets/scripts/ace/ace.settings-skin.js"></script>
     <script src="/Areas/Admin/Assets/scripts/ace/ace.widget-on-reload.js"></script>
     <script src="/Areas/Admin/Assets/scripts/ace/ace.searchbox-autocomplete.js"></script>
+    <script src="/Areas/Admin/Assets/scripts/dialog.js"></script>
 
     <!-- inline scripts related to this page -->
     <script>
 
                 jQuery(function ($) {
-                    var oTable1 =
-                        $('#sample-table-2')
-                            .dataTable({
-                                bAutoWidth: false,
-                                "aoColumns": [
-                                    { "bSortable": false },
-                                    null, null, null, null, null,
-                                    { "bSortable": false }
-                                ],
-                                "aaSorting": [],
+                    //var oTable1 =
+                    //    $('#sample-table-2')
+                    //        .dataTable({
+                    //            bAutoWidth: false,
+                    //            "aoColumns": [
+                    //                { "bSortable": false },
+                    //                null, null, null, null, null,
+                    //                { "bSortable": false }
+                    //            ],
+                    //            "aaSorting": [],
 
-                            });
+                    //        });
 
 
                     $(document).on('click', 'th input:checkbox', function () {
@@ -570,7 +571,21 @@
     <script type="text/javascript"> ace.vars['base'] = '..'; </script>
     <script src="/Areas/Admin/Assets/scripts/ace/elements.onpage-help.js"></script>
     <script src="/Areas/Admin/Assets/scripts/ace/ace.onpage-help.js"></script>
+    <script type="text/javascript">
 
+    $(document).ready(function () {
+        if ('@TempData["Msg"]' != '') {
+            var d = dialog({
+                title: '提示',
+                width: '20em',
+                content: '@TempData["Msg"]'
+            });
+            d.show();
+        }
+
+    });
+
+    </script>
 
 </body>
 </html>

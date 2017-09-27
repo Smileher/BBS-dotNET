@@ -1,0 +1,103 @@
+﻿
+@{
+    ViewBag.Title = "编辑-Smileher论坛管理系统";
+}
+<!-- /section:basics/sidebar -->
+<div class="main-content">
+    <div class="main-content-inner">
+        <!-- #section:basics/content.breadcrumbs -->
+        <div class="breadcrumbs" id="breadcrumbs">
+            <script type="text/javascript">
+                try { ace.settings.check('breadcrumbs', 'fixed') } catch (e) { }
+            </script>
+            <!-- /section:basics/content.breadcrumbs -->
+            <ul class="breadcrumb">
+                <li> <i class="ace-icon fa fa-home home-icon"></i>首页</li>
+                <li>用户管理</li>
+                <li>编辑用户</li>
+            </ul><!-- /.breadcrumb -->
+        </div>
+        <div class="page-content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="ch_divone">
+                        <b>编辑用户</b>
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">ID</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="form-field-1" disabled="disabled" class="col-xs-10 col-sm-4" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">用户名</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="form-field-1" class="col-xs-10 col-sm-4" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">账号</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="form-field-1" class="col-xs-10 col-sm-4" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-select-1">等级</label>
+                                <div class="col-sm-9">
+                                    <select class=" col-sm-4" id="form-field-select-1">
+                                        <option value="">星星</option>
+                                        <option value="">月亮</option>
+                                        <option value="">太阳</option>
+                                        <option value="">皇冠</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">积分</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="form-field-1" class="col-xs-10 col-sm-4" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">头像</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="form-field-1" class="col-xs-10 col-sm-4" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                            </div>
+                            @*<div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="form-field-5"> 电话 </label>
+                                    <div class="col-sm-how">
+                                        <input type="text" id="form-field-5" placeholder="请填写电话" class="col-xs-10 col-sm-how" />
+                                    </div>
+
+                                    <label class="col-sm-how control-label no-padding-right" for="form-field-6"> 传真 </label>
+                                    <div class="col-sm-how">
+                                        <input type="text" id="form-field-6" placeholder="请填写传真" class="col-xs-10 col-sm-how" />
+                                    </div>
+                                </div>*@
+                            <!----/提交和返回按钮--->
+                            <div class="clearfix form-actions">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <a class="btn btn-info" href="#" type="submit">
+                                        <i class="ace-icon fa fa-check bigger-110"></i>提交
+                                    </a>
+                                    <a class="btn" href="/admin/user/index" type="reset">
+                                        <i class="ace-icon fa fa-retweet bigger-110"></i>返回
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!---/ch_divone--->
+                    <!-- PAGE CONTENT ENDS -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.page-content -->
+    </div>
+</div>

@@ -12,7 +12,6 @@ namespace Club
             }
             catch(Exception ex) {
                 return result;
-
             }
         }
 
