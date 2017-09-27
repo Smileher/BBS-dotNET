@@ -158,7 +158,7 @@ namespace Club.Areas.Admin.Controllers
 
                 user.Name = name;
                 user.LevelId = levelId;
-                user.integral = integral;
+                user.Integral = integral;
                 user.Image = image;
                 db.SaveChanges();
 

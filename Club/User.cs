@@ -28,9 +28,8 @@ namespace Club
         public string PassWord { get; set; }
         public int LevelId { get; set; }
         public int Integral { get; set; }
-        public object integral { get; internal set; }
         public string Image { get; set; }
-        public int IsAdmin { get; set; }
+        public bool IsAdmin { get; set; }
         public bool IsAbort { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

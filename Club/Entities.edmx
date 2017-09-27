@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="bbs.bangke.comModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="bbs.bangke.comModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Id" />
@@ -43,8 +43,8 @@
           <Property Name="PostPointer" Type="int" Nullable="false" />
           <Property Name="ParentId" Type="int" Nullable="false" />
           <Property Name="CategoryId" Type="int" Nullable="false" />
-          <Property Name="IsFeatured" Type="int" Nullable="false" />
-          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="IsFeatured" Type="bit" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
           <Property Name="IsAbort" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="PraiseRecord">
@@ -77,7 +77,7 @@
           <Property Name="LevelId" Type="int" Nullable="false" />
           <Property Name="Integral" Type="int" Nullable="false" />
           <Property Name="Image" Type="nvarchar" MaxLength="50" />
-          <Property Name="IsAdmin" Type="int" Nullable="false" />
+          <Property Name="IsAdmin" Type="bit" Nullable="false" />
           <Property Name="IsAbort" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_Collection_Post">
@@ -201,7 +201,8 @@
             <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="bbs.bangke.comModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -247,8 +248,8 @@
           <Property Name="PostPointer" Type="Int32" Nullable="false" />
           <Property Name="ParentId" Type="Int32" Nullable="false" />
           <Property Name="CategoryId" Type="Int32" Nullable="false" />
-          <Property Name="IsFeatured" Type="Int32" Nullable="false" />
-          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="IsFeatured" Type="Boolean" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
           <Property Name="IsAbort" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Post_Category" FromRole="Post" ToRole="Category" />
           <NavigationProperty Name="Collection" Relationship="Self.FK_Collection_Post" FromRole="Post" ToRole="Collection" />
@@ -287,12 +288,12 @@
           <Property Name="LevelId" Type="Int32" Nullable="false" />
           <Property Name="Integral" Type="Int32" Nullable="false" />
           <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IsAdmin" Type="Int32" Nullable="false" />
+          <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
+          <Property Name="IsAbort" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Collection" Relationship="Self.FK_Collection_User" FromRole="User" ToRole="Collection" />
           <NavigationProperty Name="Level" Relationship="Self.FK_User_Level1" FromRole="User" ToRole="Level" />
           <NavigationProperty Name="Post" Relationship="Self.FK_Post_User" FromRole="User" ToRole="Post" />
           <NavigationProperty Name="PraiseRecord" Relationship="Self.FK_PraiseRecord_User" FromRole="User" ToRole="PraiseRecord" />
-          <Property Name="IsAbort" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK_Post_Category">
           <End Role="Category" Type="Self.Category" Multiplicity="1" />
@@ -491,7 +492,6 @@
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="bbs.bangke.comModel.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="IsAbort" ColumnName="IsAbort" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Account" ColumnName="Account" />
@@ -500,6 +500,7 @@
                 <ScalarProperty Name="Integral" ColumnName="Integral" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="IsAbort" ColumnName="IsAbort" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
