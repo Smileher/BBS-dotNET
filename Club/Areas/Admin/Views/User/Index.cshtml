@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "用户列表-Smileher论坛管理系统";
+    ViewBag.Title = "用户列表";
 }
 
 @using Webdiyer.WebControls.Mvc
@@ -30,7 +30,17 @@
                             <a class="btn btn-sm btn-primary" href="/admin/user/edit">新增用户</a>
                         </div>
                     </div>
+                    <form action="/admin/user/index" method="get">
+                        <div class="ch_choose_top">
+                            <div class="h_top_txt">
+                                <input class="h_search_txt" name="kw" type="text" placeholder="请输入关键词" value="@ViewBag.KW">
+                            </div>
+                            <input class="h_button" type="submit" value="查询">
+                            <div style="clear: both;"></div>
+                        </div>
+                    </form>
                 </div>
+
                 <div class="col-xs-12">
                     <div>
                         <table id="sample-table-2" class="table table-striped table-bordered table-hover">

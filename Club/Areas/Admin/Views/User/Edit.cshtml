@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = ViewData["title"]+"-Smileher论坛管理系统";
+    ViewBag.Title = ViewData["title"];
 }
 @model User
 <!-- /section:basics/sidebar -->
@@ -22,12 +22,12 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="ch_divone">
-                        <b>编辑用户</b>
-                        <form class="form-horizontal" role="form" action="/admin/User/edit" method="post">
-                            <div class="form-group">
+                        <b>@ViewData["title"]</b>
+                        <form class="form-horizontal" role="form" action="/admin/user/save" method="post">
+                            <div class="form-group hidden">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1">ID</label>
                                 <div class="col-sm-9">
-                                    <input type="text" id="id" name="id" disabled="disabled" placeholder="ID" class="col-xs-10 col-sm-4" value="@Model.Id" />
+                                    <input type="text" id="id" name="id" value="@Model.Id" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -40,6 +40,12 @@
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1">账号</label>
                                 <div class="col-sm-9">
                                     <input type="text" id="account" name="account" placeholder="账号" class="col-xs-10 col-sm-4" value="@Model.Account" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">密码</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="password" name="password" placeholder="密码" class="col-xs-10 col-sm-4" value="@Model.PassWord" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -77,9 +83,9 @@
                             <!----/提交和返回按钮--->
                             <div class="clearfix form-actions">
                                 <div class="col-md-offset-3 col-md-9">
-                                    <a class="btn btn-info" href="/admin/user/index" type="submit">
+                                    <button class="btn btn-info" type="submit">
                                         <i class="ace-icon fa fa-check bigger-110"></i>提交
-                                    </a>
+                                    </button>
                                     <a class="btn" href="/admin/user/index" type="reset">
                                         <i class="ace-icon fa fa-retweet bigger-110"></i>返回
                                     </a>
@@ -88,7 +94,6 @@
                         </form>
                     </div>
                     <!---/ch_divone--->
-                    <!-- PAGE CONTENT ENDS -->
                 </div>
                 <!-- /.col -->
             </div>

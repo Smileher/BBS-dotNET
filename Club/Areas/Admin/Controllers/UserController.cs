@@ -25,12 +25,21 @@ namespace Club.Areas.Admin.Controllers
                 indexStr = "1";
             }
             var pageIndex = int.Parse(indexStr);
-
-            var list = new List<User>();
+            //查询
+            PagedList<User> items;
+            var kw = Request["kw"];
             using(var db = new Entities()) {
-                list = db.User.Where(a => a.IsAbort == false).OrderByDescending(a => a.Id).Include("Level").ToPagedList(pageIndex: pageIndex,pageSize: pageSize);
-                return View(list);
+                var list = db.User.Where(a => a.IsAbort == false).Include(a => a.Level);
+
+                if(!string.IsNullOrEmpty(kw)) {
+                    list = list.Where(a => a.Account.Contains(kw) || a.Name.Contains(kw));
+                    ViewBag.KW = kw;
+                }
+
+                items = list.OrderByDescending(a => a.Id).ToPagedList(pageIndex: pageIndex,pageSize: pageSize);
             }
+            return View(items);
+
             //随机生成1000个测试用户
             //using(var db = new Entities()) {
             //    for(int i = 0;i < 1000;i++) {
@@ -113,9 +122,10 @@ namespace Club.Areas.Admin.Controllers
                 var levels = db.Level.ToList();
 
                 foreach(var level in levels) {
-                    var selectItem = new SelectListItem();
-                    selectItem.Text = level.Name;
-                    selectItem.Value = level.Id.ToString();
+                    var selectItem = new SelectListItem {
+                        Text = level.Name,
+                        Value = level.Id.ToString()
+                    };
                     if(user != null && (user.LevelId == level.Id)) {
                         selectItem.Selected = true;
                     }
@@ -140,6 +150,7 @@ namespace Club.Areas.Admin.Controllers
             var id = Request["id"].ToInt();
             var name = Request["name"];
             var account = Request["account"];
+            var password = Request["password"];
             var levelId = Request["levelId"].ToInt();
             var integral = Request["integral"].ToInt();
             var image = Request["image"];
@@ -148,17 +159,21 @@ namespace Club.Areas.Admin.Controllers
             using(var db = new Entities()) {
                 var user = db.User.FirstOrDefault(a => a.Id == id);
 
-                if(user == null) {
-                    user = new User();
-                    user.Account = account;
-                    user.IsAdmin = false;
-                    user.PassWord = "000000";
+                if(id == 0) {
+                    user = new User {
+                        Account = account,
+                        Name = name,
+                        IsAdmin = false,
+                        PassWord = password,
+                        Image = image
+                    };
                     db.User.Add(user);
                 }
 
                 user.Name = name;
                 user.LevelId = levelId;
                 user.Integral = integral;
+                user.PassWord = password;
                 user.Image = image;
                 db.SaveChanges();
 
