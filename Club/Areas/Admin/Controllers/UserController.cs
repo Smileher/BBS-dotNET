@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
-using Club;
 using System.Web.Mvc;
 using System.Web.WebPages;
 using Webdiyer.WebControls.Mvc;
+using Club;
 
 namespace Club.Areas.Admin.Controllers
 {
@@ -164,7 +164,7 @@ namespace Club.Areas.Admin.Controllers
                         Account = account,
                         Name = name,
                         IsAdmin = false,
-                        PassWord = password,
+                        PassWord = password.MD5Encoding(password),
                         Image = image
                     };
                     db.User.Add(user);
@@ -173,7 +173,7 @@ namespace Club.Areas.Admin.Controllers
                 user.Name = name;
                 user.LevelId = levelId;
                 user.Integral = integral;
-                user.PassWord = password;
+                user.PassWord = password.MD5Encoding(password);
                 user.Image = image;
                 db.SaveChanges();
 
