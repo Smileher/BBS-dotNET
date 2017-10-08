@@ -9,7 +9,14 @@ namespace Club.Controllers
     public class HomeController:Controller
     {
         public ActionResult Index() {
-            return View();
+            using(var club=new Entities()) {
+                var user=club.User.ToList();
+                foreach(var item in user) {
+                    item.PassWord = item.PassWord.MD5Encoding(item.Account);
+                }
+                club.SaveChanges();
+            }
+                return View();
         }
 
         public ActionResult About() {

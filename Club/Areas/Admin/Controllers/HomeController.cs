@@ -6,13 +6,11 @@ using System.Web.Mvc;
 
 namespace Club.Areas.Admin.Controllers
 {
+
     public class HomeController:BaseController
     {
 
-        
-        // GET: Admin/Home
-        public ActionResult Index()
-        {
+        public ActionResult Index() {
             return View();
         }
     }

@@ -219,6 +219,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\OtherController.cs" />
     <Compile Include="Areas\Admin\Controllers\PostController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
@@ -274,6 +275,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Code\FilterService.cs" />
     <Content Include="Areas\Admin\Assets\fonts\fontawesome-webfont.eot" />
     <Content Include="Areas\Admin\Assets\fonts\fontawesome-webfont.svg" />
     <Content Include="Areas\Admin\Assets\fonts\fontawesome-webfont.ttf" />
@@ -866,6 +868,7 @@
     <Content Include="Entities.edmx.diagram">
       <DependentUpon>Entities.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\Login\Index.cshtml" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

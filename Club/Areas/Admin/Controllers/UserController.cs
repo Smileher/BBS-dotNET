@@ -163,9 +163,7 @@ namespace Club.Areas.Admin.Controllers
                     user = new User {
                         Account = account,
                         Name = name,
-                        IsAdmin = false,
-                        PassWord = password.MD5Encoding(password),
-                        Image = image
+                        IsAdmin = false
                     };
                     db.User.Add(user);
                 }
@@ -173,7 +171,9 @@ namespace Club.Areas.Admin.Controllers
                 user.Name = name;
                 user.LevelId = levelId;
                 user.Integral = integral;
-                user.PassWord = password.MD5Encoding(password);
+                if(user.PassWord!=password) {
+                    user.PassWord = password.MD5Encoding(account);
+                }
                 user.Image = image;
                 db.SaveChanges();
 
