@@ -2,7 +2,8 @@
 @{
     ViewBag.Title = "帖子列表";
 }
-
+@using Webdiyer.WebControls.Mvc
+@model IPagedList<Post>
 
 <!-- /section:basics/sidebar -->
 <div class="main-content">
@@ -21,7 +22,7 @@
         </div>
         <div class="page-content">
 
-     
+
             <div class="row">
                 <div class="col-xs-12">
                     <div>
@@ -36,436 +37,63 @@
                                     </th>
                                     <th>ID</th>
                                     <th>帖子标题</th>
-                                    <th>发帖用户</th>
+                                    <th>帖子内容</th>
+                                    <th>发帖人账号</th>
                                     <th>访问量</th>
                                     <th>回复数</th>
                                     <th>帖子分类</th>
                                     <th>发帖人系统信息</th>
                                     <th>发帖时间</th>
+                                    <th>操作</th>
                                 </tr>
                             </thead>
 
                             <tbody>
                                 <tr>
-                                    <td class="center">
-                                        <label class="position-relative">
-                                            <input type="checkbox" class="ace" />
-                                            <span class="lbl"></span>
-                                        </label>
-                                    </td>
+                                    @{
+                                        foreach(var item in Model) {
+                                        <tr>
+                                            <td class="center">
+                                                <label class="position-relative">
+                                                    <input type="checkbox" class="ace" />
+                                                    <span class="lbl"></span>
+                                                </label>
+                                            </td>
+                                            <td>@item.Id</td>
+                                            <td>@item.Title</td>
+                                            <td>@item.Content</td>
+                                            <td>@item.User.Account</td>
+                                            <td>@item.ViewCount</td>
+                                            <td>@item.ReplyCount</td>
+                                            <td>@item.Category.Name</td>
+                                            <td>@item.Sysinfo</td>
+                                            <td>@item.CreateTime</td>
+                                            <td>
+                                                <div class="hidden-sm hidden-xs action-buttons">
+                                                    <a href="/admin/post/edit? Id=@item.Id">编辑</a><a href="/admin/post/delete?Id=@item.Id">删除</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
 
-                                    <td>张三</td>
-                                    <td>DC-201507111502</td>
-                                    <td class="hidden-480">哇哈哈纯净水【容量：596ml】</td>
-                                    <td>80</td>
-
-                                    <td class="hidden-480">
-                                        ￥20000
-                                    </td>
-
-                                    <td>
-                                        <div class="hidden-sm hidden-xs action-buttons">
-                                            <a href="#">修改</a><a href="#">删除</a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="center">
-                                        <label class="position-relative">
-                                            <input type="checkbox" class="ace" />
-                                            <span class="lbl"></span>
-                                        </label>
-                                    </td>
-
-                                    <td>张三</td>
-                                    <td>DC-201507111502</td>
-                                    <td class="hidden-480">哇哈哈纯净水【容量：596ml】</td>
-                                    <td>80</td>
-
-                                    <td class="hidden-480">
-                                        ￥20000
-                                    </td>
-
-                                    <td>
-                                        <div class="hidden-sm hidden-xs action-buttons">
-                                            <a href="#">修改</a><a href="#">删除</a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="center">
-                                        <label class="position-relative">
-                                            <input type="checkbox" class="ace" />
-                                            <span class="lbl"></span>
-                                        </label>
-                                    </td>
-
-                                    <td>张三</td>
-                                    <td>DC-201507111502</td>
-                                    <td class="hidden-480">哇哈哈纯净水【容量：596ml】</td>
-                                    <td>80</td>
-
-                                    <td class="hidden-480">
-                                        ￥20000
-                                    </td>
-
-                                    <td>
-                                        <div class="hidden-sm hidden-xs action-buttons">
-                                            <a href="#">修改</a><a href="#">删除</a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="center">
-                                        <label class="position-relative">
-                                            <input type="checkbox" class="ace" />
-                                            <span class="lbl"></span>
-                                        </label>
-                                    </td>
-
-                                    <td>张三</td>
-                                    <td>DC-201507111502</td>
-                                    <td class="hidden-480">哇哈哈纯净水【容量：596ml】</td>
-                                    <td>80</td>
-
-                                    <td class="hidden-480">
-                                        ￥20000
-                                    </td>
-
-                                    <td>
-                                        <div class="hidden-sm hidden-xs action-buttons">
-                                            <a href="#">修改</a><a href="#">删除</a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="center">
-                                        <label class="position-relative">
-                                            <input type="checkbox" class="ace" />
-                                            <span class="lbl"></span>
-                                        </label>
-                                    </td>
-
-                                    <td>张三</td>
-                                    <td>DC-201507111502</td>
-                                    <td class="hidden-480">哇哈哈纯净水【容量：596ml】</td>
-                                    <td>80</td>
-
-                                    <td class="hidden-480">
-                                        ￥20000
-                                    </td>
-
-                                    <td>
-                                        <div class="hidden-sm hidden-xs action-buttons">
-                                            <a href="#">修改</a><a href="#">删除</a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="center">
-                                        <label class="position-relative">
-                                            <input type="checkbox" class="ace" />
-                                            <span class="lbl"></span>
-                                        </label>
-                                    </td>
-
-                                    <td>张三</td>
-                                    <td>DC-201507111502</td>
-                                    <td class="hidden-480">哇哈哈纯净水【容量：596ml】</td>
-                                    <td>80</td>
-
-                                    <td class="hidden-480">
-                                        ￥20000
-                                    </td>
-
-                                    <td>
-                                        <div class="hidden-sm hidden-xs action-buttons">
-                                            <a href="#">修改</a><a href="#">删除</a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="center">
-                                        <label class="position-relative">
-                                            <input type="checkbox" class="ace" />
-                                            <span class="lbl"></span>
-                                        </label>
-                                    </td>
-
-                                    <td>张三</td>
-                                    <td>DC-201507111502</td>
-                                    <td class="hidden-480">哇哈哈纯净水【容量：596ml】</td>
-                                    <td>80</td>
-
-                                    <td class="hidden-480">
-                                        ￥20000
-                                    </td>
-
-                                    <td>
-                                        <div class="hidden-sm hidden-xs action-buttons">
-                                            <a href="#">修改</a><a href="#">删除</a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="center">
-                                        <label class="position-relative">
-                                            <input type="checkbox" class="ace" />
-                                            <span class="lbl"></span>
-                                        </label>
-                                    </td>
-
-                                    <td>张三</td>
-                                    <td>DC-201507111502</td>
-                                    <td class="hidden-480">哇哈哈纯净水【容量：596ml】</td>
-                                    <td>80</td>
-
-                                    <td class="hidden-480">
-                                        ￥20000
-                                    </td>
-
-                                    <td>
-                                        <div class="hidden-sm hidden-xs action-buttons">
-                                            <a href="#">修改</a><a href="#">删除</a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="center">
-                                        <label class="position-relative">
-                                            <input type="checkbox" class="ace" />
-                                            <span class="lbl"></span>
-                                        </label>
-                                    </td>
-
-                                    <td>张三</td>
-                                    <td>DC-201507111502</td>
-                                    <td class="hidden-480">哇哈哈纯净水【容量：596ml】</td>
-                                    <td>80</td>
-
-                                    <td class="hidden-480">
-                                        ￥20000
-                                    </td>
-
-                                    <td>
-                                        <div class="hidden-sm hidden-xs action-buttons">
-                                            <a href="#">修改</a><a href="#">删除</a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="center">
-                                        <label class="position-relative">
-                                            <input type="checkbox" class="ace" />
-                                            <span class="lbl"></span>
-                                        </label>
-                                    </td>
-
-                                    <td>张三</td>
-                                    <td>DC-201507111502</td>
-                                    <td class="hidden-480">哇哈哈纯净水【容量：596ml】</td>
-                                    <td>80</td>
-
-                                    <td class="hidden-480">
-                                        ￥20000
-                                    </td>
-
-                                    <td>
-                                        <div class="hidden-sm hidden-xs action-buttons">
-                                            <a href="#">修改</a><a href="#">删除</a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="center">
-                                        <label class="position-relative">
-                                            <input type="checkbox" class="ace" />
-                                            <span class="lbl"></span>
-                                        </label>
-                                    </td>
-
-                                    <td>张三</td>
-                                    <td>DC-201507111502</td>
-                                    <td class="hidden-480">哇哈哈纯净水【容量：596ml】</td>
-                                    <td>80</td>
-
-                                    <td class="hidden-480">
-                                        ￥20000
-                                    </td>
-
-                                    <td>
-                                        <div class="hidden-sm hidden-xs action-buttons">
-                                            <a href="#">修改</a><a href="#">删除</a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="center">
-                                        <label class="position-relative">
-                                            <input type="checkbox" class="ace" />
-                                            <span class="lbl"></span>
-                                        </label>
-                                    </td>
-
-                                    <td>张三</td>
-                                    <td>DC-201507111502</td>
-                                    <td class="hidden-480">哇哈哈纯净水【容量：596ml】</td>
-                                    <td>80</td>
-
-                                    <td class="hidden-480">
-                                        ￥20000
-                                    </td>
-
-                                    <td>
-                                        <div class="hidden-sm hidden-xs action-buttons">
-                                            <a href="#">修改</a><a href="#">删除</a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="center">
-                                        <label class="position-relative">
-                                            <input type="checkbox" class="ace" />
-                                            <span class="lbl"></span>
-                                        </label>
-                                    </td>
-
-                                    <td>张三</td>
-                                    <td>DC-201507111502</td>
-                                    <td class="hidden-480">哇哈哈纯净水【容量：596ml】</td>
-                                    <td>80</td>
-
-                                    <td class="hidden-480">
-                                        ￥20000
-                                    </td>
-
-                                    <td>
-                                        <div class="hidden-sm hidden-xs action-buttons">
-                                            <a href="#">修改</a><a href="#">删除</a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="center">
-                                        <label class="position-relative">
-                                            <input type="checkbox" class="ace" />
-                                            <span class="lbl"></span>
-                                        </label>
-                                    </td>
-
-                                    <td>张三</td>
-                                    <td>DC-201507111502</td>
-                                    <td class="hidden-480">哇哈哈纯净水【容量：596ml】</td>
-                                    <td>80</td>
-
-                                    <td class="hidden-480">
-                                        ￥20000
-                                    </td>
-
-                                    <td>
-                                        <div class="hidden-sm hidden-xs action-buttons">
-                                            <a href="#">修改</a><a href="#">删除</a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="center">
-                                        <label class="position-relative">
-                                            <input type="checkbox" class="ace" />
-                                            <span class="lbl"></span>
-                                        </label>
-                                    </td>
-
-                                    <td>张三</td>
-                                    <td>DC-201507111502</td>
-                                    <td class="hidden-480">哇哈哈纯净水【容量：596ml】</td>
-                                    <td>80</td>
-
-                                    <td class="hidden-480">
-                                        ￥20000
-                                    </td>
-
-                                    <td>
-                                        <div class="hidden-sm hidden-xs action-buttons">
-                                            <a href="#">修改</a><a href="#">删除</a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="center">
-                                        <label class="position-relative">
-                                            <input type="checkbox" class="ace" />
-                                            <span class="lbl"></span>
-                                        </label>
-                                    </td>
-
-                                    <td>张三</td>
-                                    <td>DC-201507111502</td>
-                                    <td class="hidden-480">哇哈哈纯净水【容量：596ml】</td>
-                                    <td>80</td>
-
-                                    <td class="hidden-480">
-                                        ￥20000
-                                    </td>
-
-                                    <td>
-                                        <div class="hidden-sm hidden-xs action-buttons">
-                                            <a href="#">修改</a><a href="#">删除</a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="center">
-                                        <label class="position-relative">
-                                            <input type="checkbox" class="ace" />
-                                            <span class="lbl"></span>
-                                        </label>
-                                    </td>
-
-                                    <td>张三</td>
-                                    <td>DC-201507111502</td>
-                                    <td class="hidden-480">哇哈哈纯净水【容量：596ml】</td>
-                                    <td>80</td>
-
-                                    <td class="hidden-480">
-                                        ￥20000
-                                    </td>
-
-                                    <td>
-                                        <div class="hidden-sm hidden-xs action-buttons">
-                                            <a href="#">修改</a><a href="#">删除</a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="center">
-                                        <label class="position-relative">
-                                            <input type="checkbox" class="ace" />
-                                            <span class="lbl"></span>
-                                        </label>
-                                    </td>
-
-                                    <td>李四</td>
-                                    <td>DC-201507111507</td>
-                                    <td class="hidden-480">康师傅纯净水【容量：596ml】</td>
-                                    <td>50</td>
-
-                                    <td class="hidden-480">
-                                        ￥20050
-                                    </td>
-
-                                    <td>
-                                        <div class="hidden-sm hidden-xs action-buttons">
-                                            <a href="#">修改</a><a href="#">删除</a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                    </div>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.page-content -->
-    </div>
-</div><!-- /.main-content -->
+                        </div>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.page-content -->
+        </div>
+        @Html.Pager(Model,new PagerOptions() {
+    ContainerTagName = "ul", //分页标签
+    CssClass = "pagination", //分页样式
+    PagerItemTemplate = "<li class=\"paginate_button\">{0}</li>",
+    CurrentPagerItemTemplate = "<li class=\"paginate_button active\"><a href='#'>{0}</a></li>",
+    ShowFirstLast = false, //该值指定是否显示第一页和最后一页分页导航按钮。
+    NextPageText = "下一页",
+    PrevPageText = "上一页",
+    HorizontalAlign = "right", //获取或设置分页控件水平对齐方式。
+    ShowMorePagerItems = true, //指定是否显示更多页按钮
+    ShowNumericPagerItems = true //指定是否显示数字页索引按钮及更多页按钮。
+})
+    </div><!-- /.main-content -->

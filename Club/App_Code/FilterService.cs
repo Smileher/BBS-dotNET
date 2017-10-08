@@ -20,7 +20,7 @@ namespace Club
                 return;
             }
 
-            var loginUser = (User)filterContext.HttpContext.Session["loginUser"];
+            var loginUser = filterContext.HttpContext.Session["loginUser"];
 
             if(loginUser != null) {
                 base.OnActionExecuting(filterContext);

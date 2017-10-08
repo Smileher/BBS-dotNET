@@ -9,7 +9,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta charset="utf-8" />
-    <title>Login Page - Ace Admin</title>
+    <title>登录-Smileher论坛后台管理系统</title>
 
     <meta name="description" content="User login page" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -48,8 +48,8 @@
                         <div class="center">
                             <h1>
                                 <i class="ace-icon fa fa-leaf green"></i>
-                                <span class="orange">论坛</span>
-                                <span class="white" id="id-text2">后台系统</span>
+                                <span class="orange">Smileher论坛</span>
+                                <span class="white" id="id-text2">后台管理系统</span>
                             </h1>
 
                         </div>
@@ -62,7 +62,7 @@
                                     <div class="widget-main">
                                         <h4 class="header blue lighter bigger">
                                             <i class="ace-icon fa fa-coffee green"></i>
-                                            用户登陆
+                                            登陆
                                         </h4>
 
                                         <div class="space-6"></div>
@@ -71,7 +71,7 @@
                                             <fieldset>
                                                 <label class="block clearfix">
                                                     <span class="block input-icon input-icon-right">
-                                                        <input type="text" class="form-control" placeholder="用户名" name="account" />
+                                                        <input type="text" class="form-control" placeholder="账号" name="account" />
                                                         <i class="ace-icon fa fa-user"></i>
                                                     </span>
                                                 </label>
@@ -106,10 +106,10 @@
 
                                     <div class="toolbar clearfix">
                                         <div>
-                                            <a href="#" data-target="#forgot-box" class="forgot-password-link">
-                                                <i class="ace-icon fa fa-arrow-left"></i>
-                                                忘记密码？
-                                            </a>
+                                            @*<a href="#" data-target="#forgot-box" class="forgot-password-link">
+                                                    <i class="ace-icon fa fa-arrow-left"></i>
+                                                    忘记密码？
+                                                </a>*@
                                         </div>
 
                                         <div>
@@ -174,55 +174,46 @@
                                         <div class="space-6"></div>
                                         <p> 请填写信息: </p>
 
-                                        <form>
+                                        <form action="/admin/login/Register" method="post">
                                             <fieldset>
                                                 <label class="block clearfix">
                                                     <span class="block input-icon input-icon-right">
-                                                        <input type="email" class="form-control" placeholder="Email" />
-                                                        <i class="ace-icon fa fa-envelope"></i>
+                                                        <input type="text" class="form-control" placeholder="用户名" name="reg_name" />
+                                                        <i class="ace-icon fa fa-users"></i>
                                                     </span>
                                                 </label>
 
                                                 <label class="block clearfix">
                                                     <span class="block input-icon input-icon-right">
-                                                        <input type="text" class="form-control" placeholder="用户名" />
-                                                        <i class="ace-icon fa fa-user"></i>
+                                                        <input type="text" class="form-control" placeholder="账号" name="reg_account" />
+                                                        <i class="ace-icon fa fa-key"></i>
                                                     </span>
                                                 </label>
 
                                                 <label class="block clearfix">
                                                     <span class="block input-icon input-icon-right">
-                                                        <input type="password" class="form-control" placeholder="密码" />
+                                                        <input type="password" class="form-control" placeholder="密码" name="reg_password" />
                                                         <i class="ace-icon fa fa-lock"></i>
                                                     </span>
                                                 </label>
 
-                                                <label class="block clearfix">
-                                                    <span class="block input-icon input-icon-right">
-                                                        <input type="password" class="form-control" placeholder="确认密码" />
-                                                        <i class="ace-icon fa fa-retweet"></i>
-                                                    </span>
-                                                </label>
-
-                                                <label class="block">
-                                                    <input type="checkbox" class="ace" />
-                                                    <span class="lbl">
-                                                        我同意使用
-                                                        <a href="#">用户协议</a>
-                                                    </span>
-                                                </label>
+                                                @*<label class="block">
+                                                        <input type="checkbox" class="ace" />
+                                                        <span class="lbl">
+                                                            我同意使用
+                                                            <a href="#">用户协议</a>
+                                                        </span>
+                                                    </label>*@
 
                                                 <div class="space-24"></div>
 
                                                 <div class="clearfix">
-                                                    <button type="reset" class="width-30 pull-left btn btn-sm">
-                                                        <i class="ace-icon fa fa-refresh"></i>
-                                                        <span class="bigger-110">重置</span>
-                                                    </button>
-
-                                                    <button type="button" class="width-65 pull-right btn btn-sm btn-success">
+                                                    @*<button type="button" class="width-45 pull-left btn btn-sm">
+                                                        <i class="ace-icon fa fa-arrow-left"></i>
+                                                        <span class="bigger-110">返回</span>
+                                                    </button>*@
+                                                    <button type="submit" class="width-45 pull-right btn btn-sm btn-success">
                                                         <span class="bigger-110">注册</span>
-
                                                         <i class="ace-icon fa fa-arrow-right icon-on-right"></i>
                                                     </button>
                                                 </div>
@@ -242,7 +233,7 @@
 
 
                     </div>
-                    <h6 class="white text-center" id="id-company-text">Copyright &copy; 2012-2018 CCIT Inc. All rights reserved. <a href="#" class="ch_a">CCIT</a> 版权所有</h6>
+                    <h6 class="white text-center" id="id-company-text">Copyright &copy; 1996-2017 Smileher Inc. All rights reserved. <a href="http://www.smilehe.website/" class="ch_a">Smileher</a> 版权所有</h6>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.main-content -->

@@ -176,7 +176,6 @@ namespace Club.Areas.Admin.Controllers
                 }
                 user.Image = image;
                 db.SaveChanges();
-
                 ShowMassage("操作成功");
             }
 
