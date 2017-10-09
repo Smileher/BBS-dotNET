@@ -23,7 +23,7 @@
                 <div class="col-xs-12">
                     <div class="ch_divone">
                         <b>@ViewData["title"]</b>
-                        <form class="form-horizontal" role="form" action="/admin/user/save" method="post">
+                        <form class="form-horizontal" role="form" action="/admin/post/save" method="post">
                             <div class="form-group hidden">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1">ID</label>
                                 <div class="col-sm-9">
@@ -33,37 +33,25 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1">帖子标题</label>
                                 <div class="col-sm-9">
-                                    <input type="text" id="name" name="name" placeholder="用户名" class="col-xs-10 col-sm-4" value="@Model.Title" />
+                                    <input type="text" id="title" name="title" placeholder="帖子标题" class="col-xs-10 col-sm-4" value="@Model.Title" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">账号</label>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">发帖人</label>
                                 <div class="col-sm-9">
-                                    <input type="text" id="account" name="account" placeholder="账号" class="col-xs-10 col-sm-4" value="@Model.Account" />
+                                    <input type="text" id="username" name="username" placeholder="发帖人" class="col-xs-10 col-sm-4" value="@Model.User.Name" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">密码</label>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">访问量</label>
                                 <div class="col-sm-9">
-                                    <input type="text" id="password" name="password" placeholder="请输入新密码" class="col-xs-10 col-sm-4" />
+                                    <input type="text" id="viewcount" name="viewcount" placeholder="访问量" class="col-xs-10 col-sm-4" value="@Model.ViewCount"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-select-1">等级</label>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-select-1">审核</label>
                                 <div class="col-sm-9">
-                                    @Html.DropDownList("levelId",new SelectList(ViewBag.SeletItems,"Value","Text"),new { @class = " col-sm-4" })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">积分</label>
-                                <div class="col-sm-9">
-                                    <input type="text" id="integral" name="integral" placeholder="积分" class="col-xs-10 col-sm-4" value="@Model.Integral" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">头像</label>
-                                <div class="col-sm-9">
-                                    <input type="text" id="image" name="image" placeholder="头像" class="col-xs-10 col-sm-4" value="@Model.Image" />
+                                    @Html.DropDownList("status",new SelectList(ViewBag.SeletItems,"Value","Text"),new { @class = " col-sm-4" })
                                 </div>
                             </div>
 

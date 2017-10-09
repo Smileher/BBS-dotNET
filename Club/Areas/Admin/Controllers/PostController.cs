@@ -66,6 +66,46 @@ namespace Club.Areas.Admin.Controllers
             }
 
         }
+        [HttpPost]
+        public ActionResult Save() {
+            var id = Request["id"].ToInt();
+            int status = Request["status"].ToInt();
+
+
+            using(var db = new Entities()) {
+                var post = db.Post.FirstOrDefault(a => a.Id == id);
+
+                post.Status = Convert.ToBoolean(status);
+                db.SaveChanges();
+                ShowMassage("操作成功");
+            }
+            return RedirectToAction("Index");
+        }
+        public ActionResult Delete() {
+            //获取Id
+            var id = Request["Id"].ToInt();
+            //判断Id是否为0，如果为0则提示"数据不正确！"
+            if(id == 0) {
+                TempData["Msg"] = "数据不正确！";
+                return RedirectToAction("Index");
+            }
+            //将string类型的Id转换为int类型
+            //var id = int.Parse(idStr);
+            using(var db = new Entities()) {
+                var post = db.Post.FirstOrDefault(a => a.Id == id);
+                //判断是否为空
+                if(User != null) {
+                    //逻辑删除，将IsAbort赋值为ture;
+                    post.IsAbort = true;
+                    //直接删除user
+                    //db.User.Remove(user);
+                    //保存
+                    db.SaveChanges();
+                }
+            }
+            TempData["Msg"] = "删除成功！";
+            return RedirectToAction("Index");
+        }
         public ActionResult Status() {
             // 审核删帖
             //随机生成1000个测试用户

@@ -24,6 +24,15 @@
 
 
             <div class="row">
+                <form action="/admin/post/index" method="get">
+                    <div class="ch_choose_top">
+                        <div class="h_top_txt">
+                            <input class="h_search_txt" name="kw" type="text" placeholder="请输入关键词" value="@ViewBag.KW">
+                        </div>
+                        <input class="h_button" type="submit" value="查询">
+                        <div style="clear: both;"></div>
+                    </div>
+                </form>
                 <div class="col-xs-12">
                     <div>
                         <table id="sample-table-2" class="table table-striped table-bordered table-hover">
@@ -70,7 +79,7 @@
                                             <td>@item.CreateTime</td>
                                             <td>
                                                 <div class="hidden-sm hidden-xs action-buttons">
-                                                    <a href="/admin/post/edit?Id=@item.Id">编辑</a><a href="/admin/post/delete?Id=@item.Id">删除</a>
+                                                    <a href="/admin/post/Edit?Id=@item.Id">编辑</a><a href="/admin/post/delete?Id=@item.Id">删除</a>
                                                 </div>
                                             </td>
                                         </tr>
