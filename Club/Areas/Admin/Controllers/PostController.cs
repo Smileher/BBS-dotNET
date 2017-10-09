@@ -38,9 +38,62 @@ namespace Club.Areas.Admin.Controllers
             }
             return View(items);
         }
+        [HttpGet]
+        public ActionResult Edit() {
+            var Id = Request["Id"].ToInt();
+            ViewData["title"] = "编辑帖子";
+            string[] sg = { "未审核","已审核"};
+            using(var db = new Entities()) {
+                var post = db.Post.Include(a => a.User).FirstOrDefault(a => a.Id == Id);
+
+
+                var selectItems = new List<SelectListItem>();
+
+                var levels = db.Level.ToList();
+
+                for(int i=0;i<2;i++) {
+                    var selectItem = new SelectListItem {
+                        Text = sg[i],
+                        Value = i.ToString()
+                    };
+                    if(post != null && (post.Status == Convert.ToBoolean(i))) {
+                        selectItem.Selected = true;
+                    }
+                    selectItems.Add(selectItem);
+                }                
+                ViewBag.SeletItems = selectItems;
+                return View(post);
+            }
+
+        }
         public ActionResult Status() {
             // 审核删帖
-            return View();
+            //随机生成1000个测试用户
+            using(var db = new Entities()) {
+                for(int i = 0;i < 300;i++) {
+                    var post = new Post();
+                    var random = new Random();
+
+                    post.Title = "第" + i + "个帖子";
+                    post.UserId = 1026;
+                    post.CreateTime = Convert.ToDateTime("2017-10-10 00:00:00.000");
+                    post.Sysinfo = "windows10";
+                    post.Content = "内容" + i;
+                    post.ViewCount = random.Next(1,9999);
+                    post.ReplyCount = random.Next(1,9999);
+                    post.PostPointer = 0;
+                    post.ParentId = 1;
+                    post.CategoryId = random.Next(1,3);
+                    post.IsFeatured = Convert.ToBoolean("False");
+                    post.Status = Convert.ToBoolean("True");
+                    post.IsAbort = Convert.ToBoolean("False");
+                    //添加
+                    db.Post.Add(post);
+                    //保存
+                    db.SaveChanges();
+                }
+                return Content("生成1000个测试用户成功!");
+            }
         }
         public ActionResult Category() {
             // 分类管理
