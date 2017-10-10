@@ -229,9 +229,6 @@
     <Compile Include="Collection.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Entities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -700,6 +697,39 @@
     <Content Include="Areas\Admin\Assets\styles\select2.png" />
     <Content Include="Areas\Admin\Assets\styles\select2x2.png" />
     <Content Include="Areas\Admin\Assets\styles\ui.jqgrid.css" />
+    <Content Include="Assets\images\blank.gif" />
+    <Content Include="Assets\images\fancybox_loading%402x.gif" />
+    <Content Include="Assets\images\fancybox_loading.gif" />
+    <Content Include="Assets\images\fancybox_overlay.png" />
+    <Content Include="Assets\images\fancybox_sprite%402x.png" />
+    <Content Include="Assets\images\fancybox_sprite.png" />
+    <Content Include="Assets\images\favicon.ico" />
+    <Content Include="Assets\images\loading1.png" />
+    <Content Include="Assets\images\logo.png" />
+    <Content Include="Assets\images\pbg.jpg" />
+    <Content Include="Assets\images\会员.png" />
+    <Content Include="Assets\images\帖子.png" />
+    <Content Include="Assets\images\精华.png" />
+    <Content Include="Assets\Plugs\font-awesome\css\font-awesome.css" />
+    <Content Include="Assets\Plugs\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Assets\Plugs\layer\layer.js" />
+    <Content Include="Assets\Plugs\layer\skin\layer.css" />
+    <Content Include="Assets\scripts\bootstrap.min.js" />
+    <Content Include="Assets\scripts\bootstrap\3.3.4\css\bootstrap.min.css" />
+    <Content Include="Assets\scripts\bootstrap\3.3.4\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Assets\scripts\bootstrap\3.3.5\js\bootstrap.min.js" />
+    <Content Include="Assets\scripts\jquery.min.js" />
+    <Content Include="Assets\scripts\jquery\1.11.3\jquery.min.js" />
+    <Content Include="Assets\scripts\jweixin-1.0.0.js" />
+    <Content Include="Assets\scripts\vendor\layer\layer.js" />
+    <Content Include="Assets\scripts\vendor\layer\skin\layer.css" />
+    <Content Include="Assets\styles\animate.css" />
+    <Content Include="Assets\styles\base.css-v=2.2.0.css" />
+    <Content Include="Assets\styles\bootstrap.min.css" />
+    <Content Include="Assets\styles\common.css" />
+    <Content Include="Assets\styles\jquery.fancybox.css-v=2.1.5.css" />
+    <Content Include="Assets\styles\style.css" />
+    <Content Include="Assets\styles\Style__FAFCF5971BCBCBAF.css" />
     <Content Include="bin\Antlr3.Runtime.dll" />
     <Content Include="bin\Club.dll" />
     <Content Include="bin\Club.pdb" />
@@ -818,36 +848,12 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\ConfirmEmail.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\ForgotPassword.cshtml" />
-    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\ResetPassword.cshtml" />
-    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\SendCode.cshtml" />
-    <Content Include="Views\Account\VerifyCode.cshtml" />
-    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
-    <Content Include="Views\Manage\ChangePassword.cshtml" />
-    <Content Include="Views\Manage\Index.cshtml" />
-    <Content Include="Views\Manage\ManageLogins.cshtml" />
-    <Content Include="Views\Manage\SetPassword.cshtml" />
-    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
-    <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Base\" />
+    <Folder Include="Controllers\" />
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
@@ -870,6 +876,19 @@
     </Content>
     <Content Include="Areas\Admin\Views\Login\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Post\Edit.cshtml" />
+    <Content Include="Assets\Plugs\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Assets\Plugs\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Assets\Plugs\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Assets\Plugs\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Assets\scripts\bootstrap\3.3.4\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Assets\scripts\bootstrap\3.3.4\fonts\glyphicons-halflings-regular.eot-" />
+    <Content Include="Assets\scripts\bootstrap\3.3.4\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Assets\scripts\bootstrap\3.3.4\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Assets\scripts\bootstrap\3.3.4\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Assets\scripts\Script__10A58712B8E7FED0" />
+    <Content Include="Assets\scripts\Script__26F1BB2674E922FB" />
+    <Content Include="Assets\scripts\Script__4B1CC929B4E0D4A0" />
+    <Content Include="Assets\scripts\Script__5931B35C33207CED" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
