@@ -14,7 +14,8 @@ namespace Club.Areas.Admin.Controllers
         /// 帖子管理
         /// </summary>
         /// <returns></returns>
-        public ActionResult Index() {
+        public ActionResult Index()
+        {
             // 帖子列表
             //分页操作 MVCpager
             int pageSize = 15;
@@ -37,6 +38,34 @@ namespace Club.Areas.Admin.Controllers
                 items = list.OrderByDescending(a => a.Id).ToPagedList(pageIndex: pageIndex,pageSize: pageSize);
             }
             return View(items);
+            //随机生成300个帖子
+            //using (var db = new Entities())
+            //{
+            //    for (int i = 0; i < 300; i++)
+            //    {
+            //        var post = new Post();
+            //        var random = new Random();
+
+            //        post.Title = "第" + i + "个帖子";
+            //        post.UserId = 1026;
+            //        post.CreateTime = Convert.ToDateTime("2017-10-10 00:00:00.000");
+            //        post.Sysinfo = "windows10";
+            //        post.Content = "内容" + i;
+            //        post.ViewCount = random.Next(1, 9999);
+            //        post.ReplyCount = random.Next(1, 9999);
+            //        post.PostPointer = 0;
+            //        post.ParentId = 1;
+            //        post.CategoryId = random.Next(1, 3);
+            //        post.IsFeatured = Convert.ToBoolean("False");
+            //        post.Status = Convert.ToBoolean("True");
+            //        post.IsAbort = Convert.ToBoolean("False");
+            //        //添加
+            //        db.Post.Add(post);
+            //        //保存
+            //        db.SaveChanges();
+            //    }
+            //    return Content("生成300个帖子成功!");
+            //}
         }
         [HttpGet]
         public ActionResult Edit() {
@@ -108,32 +137,7 @@ namespace Club.Areas.Admin.Controllers
         }
         public ActionResult Status() {
             // 审核删帖
-            //随机生成1000个测试用户
-            using(var db = new Entities()) {
-                for(int i = 0;i < 300;i++) {
-                    var post = new Post();
-                    var random = new Random();
-
-                    post.Title = "第" + i + "个帖子";
-                    post.UserId = 1026;
-                    post.CreateTime = Convert.ToDateTime("2017-10-10 00:00:00.000");
-                    post.Sysinfo = "windows10";
-                    post.Content = "内容" + i;
-                    post.ViewCount = random.Next(1,9999);
-                    post.ReplyCount = random.Next(1,9999);
-                    post.PostPointer = 0;
-                    post.ParentId = 1;
-                    post.CategoryId = random.Next(1,3);
-                    post.IsFeatured = Convert.ToBoolean("False");
-                    post.Status = Convert.ToBoolean("True");
-                    post.IsAbort = Convert.ToBoolean("False");
-                    //添加
-                    db.Post.Add(post);
-                    //保存
-                    db.SaveChanges();
-                }
-                return Content("生成1000个测试用户成功!");
-            }
+            return View();
         }
         public ActionResult Category() {
             // 分类管理
