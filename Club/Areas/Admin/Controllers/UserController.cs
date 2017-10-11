@@ -79,28 +79,28 @@ namespace Club.Areas.Admin.Controllers
         /// <returns></returns>
         public ActionResult Admin() {
             //随机生成300个测试用户
-            using(var db = new Entities()) {
-                for(int i = 0;i < 300;i++) {
-                    var user = new User();
-                    var random = new Random();
-                    //随机产生范围为1-4的数字并赋值给LevelId
-                    user.LevelId = random.Next(1,4);
-                    //测试用户的Name为"测试用户+i"
-                    user.Name = "测试用户" + i;
-                    //获取一个五位随机数转换成String类型,并赋值给Account
-                    user.Account = random.Next(10000,99999).ToString();
-                    var account = user.Account;
-                    user.PassWord = 000000.ToString().MD5Encoding(account);
-                    user.Image = "/Assets/avatars/avatars (" + random.Next(1,31).ToString() + ").png";
-                    user.CreateTime = Convert.ToDateTime("2017-10-10");
-                    //添加
-                    db.User.Add(user);
-                    //保存
-                    db.SaveChanges();
-                }
-                return Content("生成300个测试用户成功!");
-            }
-            //return View();
+            //using(var db = new Entities()) {
+            //    for(int i = 0;i < 300;i++) {
+            //        var user = new User();
+            //        var random = new Random();
+            //        //随机产生范围为1-4的数字并赋值给LevelId
+            //        user.LevelId = random.Next(1,4);
+            //        //测试用户的Name为"测试用户+i"
+            //        user.Name = "测试用户" + i;
+            //        //获取一个五位随机数转换成String类型,并赋值给Account
+            //        user.Account = random.Next(10000,99999).ToString();
+            //        var account = user.Account;
+            //        user.PassWord = 000000.ToString().MD5Encoding(account);
+            //        user.Image = "/Assets/avatars/avatars (" + random.Next(1,31).ToString() + ").png";
+            //        user.CreateTime = Convert.ToDateTime("2017-10-10");
+            //        //添加
+            //        db.User.Add(user);
+            //        //保存
+            //        db.SaveChanges();
+            //    }
+            //    return Content("生成300个测试用户成功!");
+            //}
+            return View();
         }
         /// <summary>
         /// 用户收藏点赞列表
