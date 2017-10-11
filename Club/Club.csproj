@@ -229,6 +229,9 @@
     <Compile Include="Collection.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PostController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Entities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -256,6 +259,9 @@
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="obj\Release\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Release\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Release\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Post.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
@@ -697,6 +703,37 @@
     <Content Include="Areas\Admin\Assets\styles\select2.png" />
     <Content Include="Areas\Admin\Assets\styles\select2x2.png" />
     <Content Include="Areas\Admin\Assets\styles\ui.jqgrid.css" />
+    <Content Include="Assets\avatars\avatars %281%29.png" />
+    <Content Include="Assets\avatars\avatars %2810%29.png" />
+    <Content Include="Assets\avatars\avatars %2811%29.png" />
+    <Content Include="Assets\avatars\avatars %2812%29.png" />
+    <Content Include="Assets\avatars\avatars %2813%29.png" />
+    <Content Include="Assets\avatars\avatars %2814%29.png" />
+    <Content Include="Assets\avatars\avatars %2815%29.png" />
+    <Content Include="Assets\avatars\avatars %2816%29.png" />
+    <Content Include="Assets\avatars\avatars %2817%29.png" />
+    <Content Include="Assets\avatars\avatars %2818%29.png" />
+    <Content Include="Assets\avatars\avatars %2819%29.png" />
+    <Content Include="Assets\avatars\avatars %282%29.png" />
+    <Content Include="Assets\avatars\avatars %2820%29.png" />
+    <Content Include="Assets\avatars\avatars %2821%29.png" />
+    <Content Include="Assets\avatars\avatars %2822%29.png" />
+    <Content Include="Assets\avatars\avatars %2823%29.png" />
+    <Content Include="Assets\avatars\avatars %2824%29.png" />
+    <Content Include="Assets\avatars\avatars %2825%29.png" />
+    <Content Include="Assets\avatars\avatars %2826%29.png" />
+    <Content Include="Assets\avatars\avatars %2827%29.png" />
+    <Content Include="Assets\avatars\avatars %2828%29.png" />
+    <Content Include="Assets\avatars\avatars %2829%29.png" />
+    <Content Include="Assets\avatars\avatars %283%29.png" />
+    <Content Include="Assets\avatars\avatars %2830%29.png" />
+    <Content Include="Assets\avatars\avatars %2831%29.png" />
+    <Content Include="Assets\avatars\avatars %284%29.png" />
+    <Content Include="Assets\avatars\avatars %285%29.png" />
+    <Content Include="Assets\avatars\avatars %286%29.png" />
+    <Content Include="Assets\avatars\avatars %287%29.png" />
+    <Content Include="Assets\avatars\avatars %288%29.png" />
+    <Content Include="Assets\avatars\avatars %289%29.png" />
     <Content Include="Assets\images\blank.gif" />
     <Content Include="Assets\images\fancybox_loading%402x.gif" />
     <Content Include="Assets\images\fancybox_loading.gif" />
@@ -746,7 +783,6 @@
     <Content Include="bin\Microsoft.AspNet.Identity.EntityFramework.dll" />
     <Content Include="bin\Microsoft.AspNet.Identity.Owin.dll" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
-    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
     <Content Include="bin\Microsoft.Owin.dll" />
     <Content Include="bin\Microsoft.Owin.Host.SystemWeb.dll" />
     <Content Include="bin\Microsoft.Owin.Security.Cookies.dll" />
@@ -822,7 +858,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Areas\Admin\Views\web.config" />
-    <Content Include="obj\Debug\build.force" />
     <Content Include="obj\Debug\Club.csproj.CoreCompileInputs.cache" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
@@ -839,6 +874,8 @@
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
     <Content Include="bin\Club.dll.config" />
     <Content Include="bin\ApplicationInsights.config" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -846,14 +883,10 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Admin\Views\Base\" />
-    <Folder Include="Controllers\" />
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
@@ -890,6 +923,16 @@
     <Content Include="Assets\scripts\Script__4B1CC929B4E0D4A0" />
     <Content Include="Assets\scripts\Script__5931B35C33207CED" />
     <None Include="packages.config" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Post\Index.cshtml" />
+    <Content Include="Views\Post\New.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\Register.cshtml" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

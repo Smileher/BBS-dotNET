@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewBag.Title = ViewData["title"];
+}
+@model Post
+<!-- /section:basics/sidebar -->
+<div class="main-content">
+    <div class="main-content-inner">
+        <!-- #section:basics/content.breadcrumbs -->
+        <div class="breadcrumbs" id="breadcrumbs">
+            <script type="text/javascript">
+                try { ace.settings.check('breadcrumbs', 'fixed') } catch (e) { }
+            </script>
+            <!-- /section:basics/content.breadcrumbs -->
+            <ul class="breadcrumb">
+                <li> <i class="ace-icon fa fa-home home-icon"></i>首页</li>
+                <li>帖子管理</li>
+                <li>@ViewData["title"]</li>
+            </ul><!-- /.breadcrumb -->
+        </div>
+        <div class="page-content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="ch_divone">
+                        <b>@ViewData["title"]</b>
+                        <form class="form-horizontal" role="form" action="/admin/post/save" method="post">
+                            <div class="form-group hidden">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">ID</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="id" name="id" value="@Model.Id" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">帖子标题</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="title" name="title" placeholder="帖子标题" class="col-xs-10 col-sm-4" value="@Model.Title" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">发帖人</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="username" name="username" placeholder="发帖人" class="col-xs-10 col-sm-4" value="@Model.User.Name" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">访问量</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="viewcount" name="viewcount" placeholder="访问量" class="col-xs-10 col-sm-4" value="@Model.ViewCount"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-select-1">审核</label>
+                                <div class="col-sm-9">
+                                    @Html.DropDownList("status",new SelectList(ViewBag.SeletItems,"Value","Text"),new { @class = " col-sm-4" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                            </div>
+                            @*<div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="form-field-5"> 电话 </label>
+                                    <div class="col-sm-how">
+                                        <input type="text" id="form-field-5" placeholder="请填写电话" class="col-xs-10 col-sm-how" />
+                                    </div>
+
+                                    <label class="col-sm-how control-label no-padding-right" for="form-field-6"> 传真 </label>
+                                    <div class="col-sm-how">
+                                        <input type="text" id="form-field-6" placeholder="请填写传真" class="col-xs-10 col-sm-how" />
+                                    </div>
+                                </div>*@
+                            <!----/提交和返回按钮--->
+                            <div class="clearfix form-actions">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <button class="btn btn-info" type="submit">
+                                        <i class="ace-icon fa fa-check bigger-110"></i>提交
+                                    </button>
+                                    <a class="btn" href="/admin/user/index" type="reset">
+                                        <i class="ace-icon fa fa-retweet bigger-110"></i>返回
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!---/ch_divone--->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.page-content -->
+    </div>
+</div>
