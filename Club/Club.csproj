@@ -147,7 +147,7 @@
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
     <Reference Include="Webdiyer.MvcPager">
-      <HintPath>..\..\..\..\Desktop\Webdiyer.MvcPager.dll</HintPath>
+      <HintPath>..\Webdiyer.MvcPager.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>

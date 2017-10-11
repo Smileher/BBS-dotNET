@@ -229,6 +229,7 @@ E:\Documents\Project\BBS-dotNET\Club\bin\Club.dll
 E:\Documents\Project\BBS-dotNET\Club\bin\Club.pdb
 E:\Documents\Project\BBS-dotNET\Club\bin\Microsoft.AspNet.TelemetryCorrelation.dll
 E:\Documents\Project\BBS-dotNET\Club\bin\System.Diagnostics.DiagnosticSource.dll
+E:\Documents\Project\BBS-dotNET\Club\bin\Webdiyer.MvcPager.dll
 E:\Documents\Project\BBS-dotNET\Club\bin\Microsoft.AspNet.TelemetryCorrelation.xml
 E:\Documents\Project\BBS-dotNET\Club\bin\System.Diagnostics.DiagnosticSource.xml
 E:\Documents\Project\BBS-dotNET\Club\obj\Debug\Club.csprojResolveAssemblyReference.cache
