@@ -80,32 +80,35 @@ namespace Club.Areas.Admin.Controllers
         /// <returns></returns>
         public ActionResult Admin() {
             //随机生成100个测试用户
-            using(var db = new Entities()) {
-                for(int i = 0;i < 100;i++) {
-                    var user = new User();
-                    var random = new Random();
-                    //随机产生范围为1-4的数字并赋值给LevelId
-                    user.LevelId = random.Next(1,5);
-                    //测试用户的Name为"测试用户+i"
-                    user.Name = "测试用户" + i;
-                    //获取一个五位随机数转换成String类型,并赋值给Account
-                    user.Account = random.Next(10000,99999).ToString();
-                    var account = user.Account;
-                    user.PassWord = 000000.ToString().MD5Encoding(account);
-                    user.Image = "/Assets/avatars/avatars (" + random.Next(1,32).ToString() + ").png";
-                    var x= random.Next(1996,2018).ToString();
-                    var y = random.Next(1,13).ToString();
-                    var z = random.Next(1,32).ToString();
-                    user.CreateTime = Convert.ToDateTime(x + "-" + y + "-" + z);
-                    //添加
-                    db.User.Add(user);
-                    //保存
-                    db.SaveChanges();
-                    Thread.Sleep(500);
-                }
-                return Content("生成100个测试用户成功!");
-            }
-            //return View();
+            //using(var db = new Entities()) {
+            //    for(int i = 0;i < 100;i++) {
+            //        var user = new User();
+            //        var random = new Random();
+            //        //随机产生范围为1-4的数字并赋值给LevelId
+            //        user.LevelId = random.Next(1,5);
+            //        //测试用户的Name为"测试用户+i"
+            //        user.Name = "测试用户" + i;
+            //        //获取一个五位随机数转换成String类型,并赋值给Account
+            //        user.Account = random.Next(10000,99999).ToString();
+            //        var account = user.Account;
+            //        user.PassWord = 000000.ToString().MD5Encoding(account);
+            //        头像
+            //        user.Image = "/Assets/avatars/avatars (" + random.Next(1,32).ToString() + ").png";
+            //        随机产生注册日期
+            //        var x= random.Next(1996,2018).ToString();
+            //        var y = random.Next(1,13).ToString();
+            //        var z = random.Next(1,32).ToString();
+            //        user.CreateTime = Convert.ToDateTime(x + "-" + y + "-" + z);
+            //        //添加
+            //        db.User.Add(user);
+            //        //保存
+            //        db.SaveChanges();
+            //        延迟500毫秒
+            //        Thread.Sleep(500);
+            //    }
+            //    return Content("生成100个测试用户成功!");
+            //}
+            return View();
         }
         /// <summary>
         /// 用户收藏点赞列表
