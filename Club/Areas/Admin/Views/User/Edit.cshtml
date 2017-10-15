@@ -23,82 +23,78 @@
                 <div class="col-xs-12">
                     <div class="ch_divone">
                         <b>@ViewData["title"]</b>
-                        <form class="form-horizontal" role="form" action="/admin/user/save" method="post">
-                            <div class="form-group hidden">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">ID</label>
-                                <div class="col-sm-9">
-                                    <input type="text" id="id" name="id" value="@Model.Id" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">用户名</label>
-                                <div class="col-sm-9">
-                                    <input type="text" id="name" name="name" placeholder="用户名" class="col-xs-10 col-sm-4" value="@Model.Name" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">账号</label>
-                                <div class="col-sm-9">
-                                    <input type="text" id="account" name="account" placeholder="账号" class="col-xs-10 col-sm-4" value="@Model.Account" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">密码</label>
-                                <div class="col-sm-9">
-                                    <input type="text" id="password" name="password" placeholder="请输入新密码" class="col-xs-10 col-sm-4" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-select-1">等级</label>
-                                <div class="col-sm-9">
-                                    @Html.DropDownList("levelId",new SelectList(ViewBag.SeletItems,"Value","Text"),new { @class = " col-sm-4" })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">积分</label>
-                                <div class="col-sm-9">
-                                    <input type="text" id="integral" name="integral" placeholder="积分" class="col-xs-10 col-sm-4" value="@Model.Integral" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">头像</label>
-                                <div class="col-sm-9">
-                                    <input type="text" id="image" name="image" placeholder="头像" class="col-xs-10 col-sm-4" value="@Model.Image" />
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                            </div>
-                            @*<div class="form-group">
-                                    <label class="col-sm-3 control-label no-padding-right" for="form-field-5"> 电话 </label>
-                                    <div class="col-sm-how">
-                                        <input type="text" id="form-field-5" placeholder="请填写电话" class="col-xs-10 col-sm-how" />
+                        <div class="col-xs-4">
+                            <img class="img-responsive" height="300" width="300" src='@Model.Image' />
+                        </div>
+                        <div class="col-xs-8">
+                            <div class="col-xs-12">
+                                <form class="form-horizontal" role="form" action="/admin/user/save" method="post">
+                                    <div class="form-group hidden">
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">ID</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" id="id" name="id" value="@Model.Id" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">用户名</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" id="name" name="name" placeholder="用户名" class="col-xs-10 col-sm-4" value="@Model.Name" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">账号</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" id="account" name="account" placeholder="账号" class="col-xs-10 col-sm-4" value="@Model.Account" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">密码</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" id="password" name="password" placeholder="请输入新密码" class="col-xs-10 col-sm-4" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-select-1">等级</label>
+                                        <div class="col-sm-9">
+                                            @Html.DropDownList("levelId",new SelectList(ViewBag.SeletItems,"Value","Text"),new { @class = " col-sm-4" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">积分</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" id="integral" name="integral" placeholder="积分" class="col-xs-10 col-sm-4" value="@Model.Integral" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">头像</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" id="image" name="image" placeholder="头像" class="col-xs-10 col-sm-4" value="@Model.Image" />
+                                        </div>
                                     </div>
 
-                                    <label class="col-sm-how control-label no-padding-right" for="form-field-6"> 传真 </label>
-                                    <div class="col-sm-how">
-                                        <input type="text" id="form-field-6" placeholder="请填写传真" class="col-xs-10 col-sm-how" />
+                                    <div class="form-group">
                                     </div>
-                                </div>*@
-                            <!----/提交和返回按钮--->
-                            <div class="clearfix form-actions">
-                                <div class="col-md-offset-3 col-md-9">
-                                    <button class="btn btn-info" type="submit">
-                                        <i class="ace-icon fa fa-check bigger-110"></i>提交
-                                    </button>
-                                    <a class="btn" href="/admin/user/index" type="reset">
-                                        <i class="ace-icon fa fa-retweet bigger-110"></i>返回
-                                    </a>
-                                </div>
+                                    <!----/提交和返回按钮--->
+                                    <div class="clearfix form-actions">
+                                        <div class="col-md-offset-3 col-md-9">
+                                            <button class="btn btn-info" type="submit">
+                                                <i class="ace-icon fa fa-check bigger-110"></i>提交
+                                            </button>
+                                            <a class="btn" href="/admin/user/index" type="reset">
+                                                <i class="ace-icon fa fa-retweet bigger-110"></i>返回
+                                            </a>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
-                        </form>
+                            <!---/ch_divone--->
+                        </div>
                     </div>
-                    <!---/ch_divone--->
+                    <!-- /.col -->
                 </div>
-                <!-- /.col -->
+                <!-- /.row -->
             </div>
-            <!-- /.row -->
+            <!-- /.page-content -->
         </div>
-        <!-- /.page-content -->
     </div>
 </div>
