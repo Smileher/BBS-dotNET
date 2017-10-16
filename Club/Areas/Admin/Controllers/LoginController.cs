@@ -31,7 +31,7 @@ namespace Club.Areas.Admin.Controllers
                 var pw = password.MD5Encoding(account);
 
                 var user = db.User.Where(a => a.Account == account && a.PassWord == pw);
-                if(user == null) {
+                if(user.Count() == 0) {
                     ShowMassage("用户不存在");
                     return RedirectToAction("Index");
                 }

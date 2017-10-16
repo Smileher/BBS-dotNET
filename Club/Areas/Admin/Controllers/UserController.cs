@@ -78,8 +78,9 @@ namespace Club.Areas.Admin.Controllers
         /// 管理员列表
         /// </summary>
         /// <returns></returns>
+        [AuthFilter(IsNeedLogin = false)]
         public ActionResult Admin() {
-            //随机生成100个测试用户
+            ////随机生成100个测试用户
             //using(var db = new Entities()) {
             //    for(int i = 0;i < 100;i++) {
             //        var user = new User();
@@ -89,21 +90,22 @@ namespace Club.Areas.Admin.Controllers
             //        //测试用户的Name为"测试用户+i"
             //        user.Name = "测试用户" + i;
             //        //获取一个五位随机数转换成String类型,并赋值给Account
-            //        user.Account = random.Next(10000,99999).ToString();
-            //        var account = user.Account;
-            //        user.PassWord = 000000.ToString().MD5Encoding(account);
-            //        头像
+            //        var account = random.Next(10000,99999).ToString();
+            //        user.Account = account;
+            //        string pw = "000000";
+            //        user.PassWord = pw.MD5Encoding(account);
+            //        //头像
             //        user.Image = "/Assets/avatars/avatars (" + random.Next(1,32).ToString() + ").png";
-            //        随机产生注册日期
-            //        var x= random.Next(1996,2018).ToString();
+            //        // 随机产生注册日期
+            //        var x = random.Next(1996,2018).ToString();
             //        var y = random.Next(1,13).ToString();
-            //        var z = random.Next(1,32).ToString();
+            //        var z = random.Next(1,29).ToString();
             //        user.CreateTime = Convert.ToDateTime(x + "-" + y + "-" + z);
             //        //添加
             //        db.User.Add(user);
             //        //保存
             //        db.SaveChanges();
-            //        延迟500毫秒
+            //        //延迟500毫秒
             //        Thread.Sleep(500);
             //    }
             //    return Content("生成100个测试用户成功!");
@@ -165,7 +167,6 @@ namespace Club.Areas.Admin.Controllers
             var password = Request["password"];
             var levelId = Request["levelId"].ToInt();
             var integral = Request["integral"].ToInt();
-            var image = Request["image"];
 
 
             using(var db = new Entities()) {
@@ -175,7 +176,9 @@ namespace Club.Areas.Admin.Controllers
                     user = new User {
                         Account = account,
                         Name = name,
-                        IsAdmin = false
+                        IsAdmin = false,
+                        Image= "/Assets/avatars/avatars(1).png",
+                        CreateTime=Convert.ToDateTime("2017-10-10")
                     };
                     db.User.Add(user);
                 }
@@ -186,7 +189,8 @@ namespace Club.Areas.Admin.Controllers
                 if(user.PassWord!=password) {
                     user.PassWord = password.MD5Encoding(account);
                 }
-                user.Image = image;
+                user.Image = "/Assets/avatars/avatars(1).png";
+                user.CreateTime = Convert.ToDateTime("2017-10-10");
                 db.SaveChanges();
                 ShowMassage("操作成功");
             }
