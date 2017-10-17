@@ -177,8 +177,8 @@ namespace Club.Areas.Admin.Controllers
                         Account = account,
                         Name = name,
                         IsAdmin = false,
-                        Image= "/Assets/avatars/avatars(1).png",
-                        CreateTime=Convert.ToDateTime("2017-10-10")
+                        Image = "/Assets/avatars/avatars (1).png",
+                        CreateTime = DateTime.Now
                     };
                     db.User.Add(user);
                 }
@@ -189,8 +189,6 @@ namespace Club.Areas.Admin.Controllers
                 if(user.PassWord!=password) {
                     user.PassWord = password.MD5Encoding(account);
                 }
-                user.Image = "/Assets/avatars/avatars(1).png";
-                user.CreateTime = Convert.ToDateTime("2017-10-10");
                 db.SaveChanges();
                 ShowMassage("操作成功");
             }
