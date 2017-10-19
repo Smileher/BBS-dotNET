@@ -135,13 +135,85 @@ namespace Club.Areas.Admin.Controllers
             TempData["Msg"] = "删除成功！";
             return RedirectToAction("Index");
         }
-        public ActionResult Status() {
-            // 审核删帖
-            return View();
-        }
+        /// <summary>
+        /// 帖子分类
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
         public ActionResult Category() {
             // 分类管理
-            return View();
+            using(var db = new Entities()) {
+                var category = db.Category.ToList();
+                
+                return View(category);
+            }
+        }
+        /// <summary>
+        /// 编辑帖子分类
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult EditCategory() {
+            var Id = Request["Id"].ToInt();
+            //var name = Request["Name"];
+            ViewData["title"] = "编辑分类";
+            using(var db = new Entities()) {
+                var category = db.Category.FirstOrDefault(a => a.Id == Id);
+                if(Id==0) {
+                    category = new Category();
+                    ViewData["title"] = "新增分类";                  
+                }
+                return View(category);
+            }
+        }
+        /// <summary>
+        /// 保存帖子分类
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult SaveCategory() {
+            var id = Request["id"].ToInt();
+            var name = Request["name"];
+            using(var db = new Entities()) {
+                var category = db.Category.FirstOrDefault(a => a.Id == id);
+                
+                if(category == null) {
+                    category = new Category();
+                    db.Category.Add(category);
+
+                }
+                category.Name = name;
+                db.SaveChanges();
+                ShowMassage("操作成功");
+            }
+            return RedirectToAction("Category");
+        }
+        /// <summary>
+        /// 删除帖子分类
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult DeleteCategory() {
+            //获取Id
+            var id = Request["Id"].ToInt();
+            //判断Id是否为0，如果为0则提示"数据不正确！"
+            if(id == 0) {
+                TempData["Msg"] = "数据不正确！";
+                return RedirectToAction("Category");
+            }
+            //将string类型的Id转换为int类型
+            //var id = int.Parse(idStr);
+            using(var db = new Entities()) {
+                var category = db.Category.FirstOrDefault(a => a.Id == id);
+                //判断是否为空
+                if(category != null) {
+                    //直接删除
+                    db.Category.Remove(category);
+                    //保存
+                    db.SaveChanges();
+                }
+            }
+            TempData["Msg"] = "删除成功！";
+            return RedirectToAction("Category");
         }
 
 

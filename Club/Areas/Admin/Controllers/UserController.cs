@@ -129,10 +129,7 @@ namespace Club.Areas.Admin.Controllers
             ViewData["title"] = "编辑用户";
             using(var db = new Entities()) {
                 var user = db.User.Include(a => a.Level).FirstOrDefault(a => a.Id == Id);
-
-
                 var selectItems = new List<SelectListItem>();
-
                 var levels = db.Level.ToList();
 
                 foreach(var level in levels) {

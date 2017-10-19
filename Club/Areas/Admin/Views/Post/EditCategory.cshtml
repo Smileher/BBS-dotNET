@@ -1,0 +1,62 @@
+﻿
+@{
+  ViewBag.Title = ViewData["title"];
+}
+@model  Category
+<!-- /section:basics/sidebar -->
+<div class="main-content">
+    <div class="main-content-inner">
+        <!-- #section:basics/content.breadcrumbs -->
+        <div class="breadcrumbs" id="breadcrumbs">
+            <script type="text/javascript">
+                try { ace.settings.check('breadcrumbs', 'fixed') } catch (e) { }
+            </script>
+            <!-- /section:basics/content.breadcrumbs -->
+            <ul class="breadcrumb">
+                <li> <i class="ace-icon fa fa-home home-icon"></i>首页</li>
+                <li>帖子管理</li>
+                <li>@ViewData["title"]</li>
+            </ul><!-- /.breadcrumb -->
+        </div>
+        <div class="page-content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="ch_divone">
+                        <b>@ViewData["title"]</b>
+                        <form class="form-horizontal" role="form" action="/admin/post/SaveCategory" method="post">
+                            <div class="form-group hidden">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">ID</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="id" name="id" value="@Model.Id" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">分类名称</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="name" name="name" placeholder="分类名称" class="col-xs-10 col-sm-4" value="@Model.Name" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                            </div>
+                            <!----/提交和返回按钮--->
+                            <div class="clearfix form-actions">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <button class="btn btn-info" type="submit">
+                                        <i class="ace-icon fa fa-check bigger-110"></i>提交
+                                    </button>
+                                    <a class="btn" href="/admin/user/Category" type="reset">
+                                        <i class="ace-icon fa fa-retweet bigger-110"></i>返回
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!---/ch_divone--->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.page-content -->
+    </div>
+</div>
