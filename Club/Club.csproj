@@ -899,7 +899,6 @@
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Post\Category.cshtml" />
     <Content Include="Areas\Admin\Views\User\Admin.cshtml" />
-    <Content Include="Areas\Admin\Views\User\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Other\Developer.cshtml" />
     <Content Include="Areas\Admin\Views\Other\Data.cshtml" />
     <Content Include="Areas\Admin\Views\Other\Index.cshtml" />
