@@ -1,0 +1,293 @@
+﻿
+@{
+    ViewBag.Title = "Browse";
+    Layout = null;
+    var currentAction = ViewContext.RouteData.Values["action"].ToString().ToLower();
+}
+@model Post
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>无标题文档</title>
+    <link href="/Areas/Admin/Assets/styles/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="/Content/css/main.css" />
+    <link rel="stylesheet" href="/Content/css/base.css" />
+    <link rel="icon" href="http://bbs.bangke.com/app/views/img/favicon.ico" mce_href="/app/views/img/favicon.ico" type="image/x-icon">
+    <script src="/Content/js/jquery/1.11.3/jquery.min.js"></script>
+    @*<script src="/Contejs/jquery-3.2.1.slim.min.js" language="javascript" type="text/javascript"></script>*@
+    <script src="/Areas/Admin/Assets/scripts/bootstrap.js"></script>
+</head>
+<body>
+    <div class="flex f-wrap f-just-s">
+        <div id="all" class="bg-rgba-white ux-w-80">
+            <!--header-->
+            <div class="uz-h-55 pa-t-15">
+                <div class="ma-l-30">
+                    <a href="/Post" class="culb">6789Club</a>
+                    <div class="left ma-l-15">
+                        <input type="text" class="search" placeholder="请输入您需要查找的内容 …" />
+                    </div>
+                </div>
+                @{
+                    var user = (User)Session["loginuser"];
+                    var praise = 0;
+                    var collection = 0;
+                    if (Session["loginuser"] != null)
+                    {
+                        foreach (var item in ViewBag.praiserecord)
+                        {
+                            if (Model.id == item.postid && user.id == item.userid)
+                            {
+                                praise = 1;
+                            }
+                        }
+                        foreach(var item in ViewBag.collection)
+                        {
+                            if (Model.id == item.Postid && user.id == item.Userid)
+                            {
+                                collection = 2;
+                            }
+                        }
+                        <div class="uz-w-180 right">
+                            <input id="userid" type="hidden" name="@user.id" />
+                            <a href='/User' class="ma-r-4">
+                                <img alt="image" src="@user.Image" width="26" height="26" class="bd-r-13" />
+                                <span class="ma-r-15 f-c-gray">@user.Name</span>
+                            </a>
+                            <a href="/Notice" class="ma-r-4">
+                                <img alt="image" src="/Content/img/pic_01.gif" width="26" height="26" />
+                            </a>
+                            <a href="/User/Introduction">
+                                <img src="/Content/img/pic_02.gif" width="26" height="26" />
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="uz-w-180 right ma-r-15">
+                            <a href='@(currentAction=="login"?"/User/Register":"/User/Login")' class="wx bg-c-blue ma-r-4">@(currentAction == "login" ? "注册" : "登录")</a> <a href="#" class="wx bg-c-green gd">更多精彩</a>
+                            <div class="or">or</div>
+                        </div>
+                    }
+                }
+            </div>
+            <!--蓝条-->
+            <div class="blue-bar"><a href="#">主页</a> / <a>@Model.Type.Name</a></div>
+            <!--main-->
+            <div class="ux-w-94 bod-t-1 ma-t-25 max-l-3 height_auto">
+                <div class="col-lg-12  bg-c-white pa-t-20">
+                    <a href="#" class="uz-w-50 uz-h-50 left"><img class="bd-r-3" src="@Model.User.Image" width="50" height="50" /></a>
+                    <div class="ma-l-70">
+                        <div class="f-s-16">
+                            @{
+                                var essence = "";
+                                if (Model.Essence == 1)
+                                {
+                                    essence = "精华贴";
+                                }
+                                else
+                                {
+                                    essence = "普通贴";
+                                }
+                                <span class="f-c-blue">@essence</span>
+                            }
+                            @Model.Title
+                            @*<span class="f-c-reds">【置顶】</span>*@
+                        </div>
+                        <div class="ma-t-15 f-s-13">
+                            <span><a href="#" class="f-c-blue">@Model.User.Name</a></span>
+                            <span class="f-c-yellows">
+                                @{
+                                    foreach (var item in ViewBag.User)
+                                    {
+                                        if (item.id == Model.Userid)
+                                        {
+                                            <i></i><!--图标-->
+                                            @item.Level.Name;
+                                        }
+                                    }
+                                }
+                            </span>
+                            <span class="f-c-gray ma-l-15">
+                                @{
+                                    string time = Model.Time.ToString();
+                                    string year = time.Substring(2, 2) + "年";
+                                    string month = time.Substring(5, 2) + "月";
+                                    string day = time.Substring(8, 2) + "日";
+                                    string hour = time.Substring(11, 5);
+                                    <i></i><!--图标-->
+                                    @year@month@day @hour
+                                }
+                            </span>
+                            <span class="f-c-gray ma-l-10">
+                                <i></i><!--图标-->
+                                @Model.System
+                            </span>
+                        </div>
+                    </div>
+                    <!--内容-->
+                    <div class="bg-c-white ma-t-30">
+                        @Html.Raw(Model.Contents.ToString())
+                    </div>
+                    <!--赞帖-->
+                    @using (Html.BeginForm("Browse", "Post", FormMethod.Get))
+                    {
+                        var praiserecord = ViewData["praiserecord"];
+                        <div id="praisearticles">
+                            @Html.Partial("_PraiseRecord", praiserecord)
+                        </div>
+                        if (Session["loginuser"] != null)
+                        {
+                            <div class="topic-option">
+                                <div class="pull-right">
+                                    <a class="praise record">点赞</a>
+                                    <a class="praise collection">收藏</a>
+                                    <a class="do-reward btn btn-sm btn-success" data-pid="0">
+                                        <i class="fa fa-database"></i>&nbsp;打赏
+                                    </a>
+                                    <a class="do-reply btn btn-sm btn-primary" data-pid="0">
+                                        <i class="fa fa-pencil"></i>
+                                        &nbsp;回复
+                                    </a>
+                                </div>
+                                <div class="clearfix">
+                                </div>
+                                @*<div class="input-group pull-right reward-input">
+                                        <div style="display: inline-table;">
+                                            <span class="input-group-addon">原因</span>
+                                            <input type="text" maxlength="80" class="reward-cause form-control" placeholder="好贴要支持~">
+                                        </div>
+                                        <div style="display: inline-table;">
+                                            <span class="input-group-addon">金币</span>
+                                            <input type="number" class="reward-score form-control" placeholder="范围1~1000">
+                                            <span class="input-group-btn">
+                                                <button type="button" class="confirm-reward btn btn-primary">
+                                                    打赏
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>*@
+                            </div>
+                        }
+
+                    <!--用户评论-->
+                        var reply = ViewData["reply"];
+                        <div id="articles">
+                            @Html.Partial("_Comment", reply)
+                        </div>
+                    }
+                    <!--评论-->
+                    @{
+                        if (Session["loginuser"] != null)
+                        {
+                            <div class="row" style="margin: 0px;">
+                                <div id="post-edit"></div>
+                                @*<a class="more-input"><i class="fa fa-angle-double-down"></i></a>*@
+                                <button id="post-submit" type="submit" class="btn btn-sm btn-primary submit-btn ux-w-100" style="margin-top:15px;">提交</button>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="bod-t-1 ux-w-100 pa-t-15 ma-b-30 text-center pa-t-45 pa-b-60">
+                                <span><a href="/User/Login">登陆</a>后可回复</span>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+            <!--foot-->
+            <div class="bg-c-white ma-t-35">
+                <div class="ux-w-98 f-s-13 bod-t-1 ma-l-15 ma-r-15 pa-t-10">
+                    <div class="right ma-b-10">苏ICP备13055054号-2</div>
+                    <div>Copyright © 2016 江苏嬉戏谷科技有限公司</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <link href="/Content/wangEditor/wangEditor.min.css" rel="stylesheet">
+    <script src="/Content/wangEditor/wangEditor.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //富文本编辑器
+            var E = window.wangEditor;
+            var editor = new E('#post-edit');
+            editor.create();
+            //判断该用户是否已点赞
+            if (@praise==1)
+            {
+                record(1);
+            }
+            if (@collection==2)
+            {
+                record(2);
+            }
+            //帖子回复
+            $('#post-submit').on('click', function () {
+                var content = editor.txt.html();
+                var userid = $('#userid').attr('name');
+                $.ajax({
+                    type: "POST",
+                    url: "/Post/Replysave",
+                    data: "postid=" +@Model.id+"&userid=" + userid + "&content=" + content,
+                    success: function (response) {
+                        $('#articles').html(response);
+                    }
+                });
+            });
+        });
+        //点赞
+        $('.record').click(function () {
+            record(1);
+            search("1");
+        })
+        //收藏
+        $('.collection').click(function () {
+            record(2);
+            search("2");
+        })
+        //已点赞方法
+        function record(key)
+        {
+            if (key == 1) {
+                $('.record').text('已点赞');
+                $('.record').attr("disabled", true);
+                $('.record').css("pointer-events", "none");
+                $('.record').css("color", "#CFCFCF");
+            }
+            else
+            {
+                $('.collection').text('已收藏');
+                $('.collection').attr("disabled", true);
+                $('.collection').css("pointer-events", "none");
+                $('.collection').css("color", "#CFCFCF");
+            }            
+        }
+        //ajax提交
+        function search(action) {
+            var userid=$('#userid').attr('name');
+            $.ajax({
+                type: "get",
+                url: "/Post/PraiseCollect",
+                async: true,
+                data: "key="+action+"&postid=" + @Model.id + "&userid=" + userid,
+                success: function (response) {
+                    $('#praisearticles').html(response);
+                }
+            });
+        }
+        //根据浏览器宽度自适应
+        window.onresize = function () {
+            var width = $(window).width();
+            if (width <= 973) {
+                $("#all").addClass("ux-w-100");
+            }
+            else {
+                $("#all").removeClass("ux-w-100");
+            }
+        }
+    </script>
+</body>
+</html>
+
+

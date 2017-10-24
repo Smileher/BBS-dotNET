@@ -1,45 +1,166 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var currentAction = ViewContext.RouteData.Values["action"].ToString().ToLower();
+}
+<!doctype html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - 我的 ASP.NET 应用程序</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-
+    <meta charset="utf-8">
+    <title>无标题文档</title>
+    <link href="/Areas/Admin/Assets/styles/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="/Content/css/main.css" />
+    <link rel="stylesheet" href="/Content/css/base.css" />
+    <link rel="stylesheet" href="/Content/font-awesome/css/font-awesome.css-v=4.3.0.css" />
+    <link rel="icon" href="http://bbs.bangke.com/app/views/img/favicon.ico" mce_href="/app/views/img/favicon.ico" type="image/x-icon">
+    <script src="/Content/js/jquery/1.11.3/jquery.min.js"></script>
+    @*<script src="/Content/js/jquery-3.2.1.slim.min.js" language="javascript" type="text/javascript"></script>*@
+    <script src="/Areas/Admin/Assets/scripts/bootstrap.js"></script>
+    <script src="/Areas/Admin/Assets/scripts/dialog.js"></script>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("应用程序名称", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <div class="flex f-wrap f-just-s">
+        <div id="all" class="bg-rgba-white ux-w-80">
+            <!--header-->
+            <div class="uz-h-55 pa-t-15">
+                <div class="ma-l-30">
+                    <a href="/Post/Index" class="culb">6789Club</a>
+                    <div class="left ma-l-15  search-main">
+                        <input id="keyword" type="text" class="search" placeholder="请输入您需要查找的内容 …" />
+                    </div>
+                </div>
+                @{
+                    var user = (User)Session["loginuser"];
+                    if (Session["loginuser"] != null)
+                    {
+                        <div class="uz-w-180 right">
+                            <a href='/User' class="ma-r-4">
+                                <img alt="image" src="@user.Image" width="26" height="26" class="bd-r-13" />
+                                <span class="ma-r-15 f-c-gray">@user.Name</span>
+                            </a>                            
+                            <a href="/Notice" class="ma-r-4">
+                                <img alt="image" src="/Content/img/pic_01.gif" width="26" height="26" />
+                            </a>
+                            <a href="/User/Introduction">
+                                <img src="/Content/img/pic_02.gif" width="26" height="26" />
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="uz-w-180 right ma-r-15">
+                            <a href='@(currentAction=="login"?"/User/Register":"/User/Login")' class="wx bg-c-blue ma-r-4">@(currentAction == "login" ? "注册" : "登录")</a> <a href="#" class="wx bg-c-green gd">更多精彩</a>
+                            <div class="or">or</div>
+                        </div>                        
+                    }
+                }
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("主页", "Index", "Home")</li>
-                    <li>@Html.ActionLink("关于", "About", "Home")</li>
-                    <li>@Html.ActionLink("联系方式", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
+            <!--蓝条-->
+            <div class="blue-bar"></div>
+            <!--main-->
+            <div class="inline-flex f-wrap f-just-s ux-w-100">
+                <div class="ma-t-20 ux-w-95">
+                    <div class="title pa-t-25 bg-c-white ux-w-100">
+                        <div class="uz-w-60 uz-h-60 bg-c-blue bd-r-30 left ma-r-15 ma-l-30"> <img src="/Content/userimages/logo.png" height="60" width="60" /> </div>
+                        <h3 class="ma-t-10">6789俱乐部·因趣而生</h3>
+                        <p class="f-s-12">定期为有相同兴趣的人提供活动，励志做常州最好玩的俱乐部，加入6789俱乐部，我们带你吃喝玩乐玩转生活，趣味无穷。</p>
+                    </div>
+                    <div class="container ux-w-100 ma-t-10">
+                        <div class="row">
+                            @RenderBody()
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--foot-->
+            <div class="bg-c-white ma-t-35">
+                <div class="ux-w-98 f-s-13 bod-t-1 ma-l-15 ma-r-15 pa-t-10">
+                    <div class="right ma-b-10">苏ICP备13055054号-2</div>
+                    <div>Copyright © 2016 江苏嬉戏谷科技有限公司</div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 应用程序</p>
-        </footer>
-    </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //弹出框
+            if ('@TempData["Msg"]' != '') {
+                var d = dialog({
+                    title: '欢迎',
+                    content: '@TempData["Msg"]',
+                    width: 300
+                });
+                d.show();
+            }
+            //用户注册界面进行新密码验证
+            $("#error").hide();
+            $("#againPassword").bind("input propertychange", function () {
+                var Password = $("#Password").val();
+                var againPassword = $("#againPassword").val();
+                if (Password != againPassword) {
+                    $("#error").show();
+                }
+                else {
+                    $("#error").hide();
+                }
+            });
+            //type分页样式变换
+            $('.ma_lt').click(function () {
+                    var _s = $(this).index();
+                    $(".ul_s ul").eq(_s).show().siblings().hide();
+                    $(this).addClass('bg-c-blue f-c-white').siblings().removeClass('bg-c-blue f-c-white');
+                });
+            $('.ma_rm').click(function () {
+                    $(this).addClass('ma_rm_on').siblings().removeClass('ma_rm_on');
+                });
+            $('.ma_rmb').click(function () {
+                    $(this).addClass('ma_rmb_on').siblings().removeClass('ma_rmb_on');
+            });
+            //浏览帖子内容
+            $('.browse').click(function () {
+                var postid = $(this).attr('data-cid');
+                var url = "/Post/Browse?postid=" + postid;
+                window.location.href = url;
+            });
+            //搜索
+            $("#keyword").bind("input propertychange", function () { //监听input输入框内容
+                var keyword = $(this).val();
+                search(1, keyword);
+            });
+            //帖子类型
+            $('.ma_rm').click(function () {
+                var typeid = $(this).attr('name');
+                search(3,typeid);
+            });
+        })
+        //ajax提交
+        function search(key,value) {
+            $.ajax({
+                type: "get",
+                url: "/Post/Index",
+                async: true,
+                data: "key=" + key + "&value=" + value,
+                success: function (response) {
+                    $('#articles').html(response);
+                }
+            });
+        }
+        //根据浏览器宽度自适应
+        window.onresize = function () {
+            var width = $(window).width();
+            if (width <= 973) {
+                $("#all").addClass("ux-w-100");
+            }
+            else {
+                $("#all").removeClass("ux-w-100");
+            }
+            if (width <= 550)
+            {
+                $('.search-main').hide();
+            }
+            else
+            {
+                $('.search-main').show();
+            }
+        }
+    </script>
 </body>
 </html>

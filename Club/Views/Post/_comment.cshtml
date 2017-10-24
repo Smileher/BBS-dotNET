@@ -1,0 +1,38 @@
+﻿@{
+    Layout = null;
+}
+@model List<Club.Models.ReplyModel>
+@{
+    foreach (var item in Model)
+    {
+        <div id="reply" class="bod-t-1 ux-w-100 pa-t-15 ma-b-30">
+            <a href="#" class="left ma-r-15"><img class="bd-r-3" src="@item.userimage" width="24" height="24" /></a>
+            <div class="f-s-12 ma-b-10">
+                <span><a href="#" class="f-c-blue">@item.username</a></span>
+                <span class="f-c-yellows">@item.userlevel</span>
+                @{
+                    string time = item.recoverytime.ToString();
+                    string year = time.Substring(2, 2) + "年";
+                    string month = time.Substring(5, 2) + "月";
+                    string day = time.Substring(8, 2) + "日";
+                    string hour = time.Substring(11, 5);
+                    <span class="right">@year@month@day @hour</span>
+                }                
+            </div>
+            <div class="f-s-16">
+                @Html.Raw(@item.content.ToString())          
+            </div>
+        </div>
+    }
+}
+@*<div class="bod-t-1 ux-w-100 pa-t-15  ma-b-30">
+    <a href="#" class="left ma-r-15"><img class="bd-r-3" src="images/00.png" width="24" height="24" /></a>
+    <div class="f-s-12 ma-b-10">
+        <span><a href="#" class="f-c-blue">用户名</a></span>
+        <span class="f-c-yellows">身份</span>
+        <span class="right">日期</span>
+    </div>
+    <div class="f-s-16">
+        <p>内容！！！</p>
+    </div>
+</div>*@

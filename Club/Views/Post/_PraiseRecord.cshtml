@@ -1,0 +1,13 @@
+﻿@{
+    Layout = null;
+}
+@model List<Club.Models.PraiserecordModel>
+<div id="praisearticles" class="bod-t-1 ux-w-100 ma-b-30">
+    <p class="f-s-12 f-c-gray ma-t-20">以下用户赞了本帖</p>
+    @{
+        foreach (var item in Model)
+        {
+            <a><img src="@item.userimage" width="30" height="30" class="bd-r-15" /></a>
+        }
+    }    
+</div>

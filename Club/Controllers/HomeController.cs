@@ -10,88 +10,62 @@ namespace Club.Controllers
 {
     public class HomeController : Controller
     {
-        [AuthFilter]
         public ActionResult Index()
         {
 
-            //using (var db = new ClubEntities())
+            using (var club = new ClubEntitie())
+            {
+                //添加
+                //var level = new Level();
+                //level.Name = "帮主";
+                //club.Level.Add(level);
+                //club.SaveChanges();
+
+                //删除
+                //var level = club.Level.FirstOrDefault(a => a.id == 3);
+                //if(level!=null)
+                //{
+                //    club.Level.Remove(level);
+                //    club.SaveChanges();
+                //}
+
+                //查找
+                //var level = club.Level.Where(a => a.id == 1).ToList();
+                //if(level!=null)
+                //{
+                //    var str = new StringBuilder();
+                //    foreach (var item in level)
+                //    {
+                //        str.AppendLine("id:" + item.id + " name:" + item.Name);                        
+                //    }
+                //    return Content(str.ToString());
+                //}
+
+            }
+            return Content("ok");
+        }
+
+        public ActionResult About()
+        {
+            //using (var club=new ClubEntitie())
             //{
-            //    var level = new Level();
-            //    level.Name = "级别1";
-
-            //    db.Level.Add(level);
-            //    db.SaveChanges();
-            //}
-
-
-            //using (var db=new ClubEntities())
-            //{
-            //    for (int i = 0; i < 1000; i++)
+            //    string psw = "000000";
+            //    var user = club.User.ToList();
+            //    foreach(var item in user)
             //    {
-            //        var user = new User();
-            //        user.LevelId = 1;
-            //        user.Name = "user"+i;
-            //        user.Account = "user"+i;
-            //        user.PassWord = "000000";
-            //        db.User.Add(user);
-            //        db.SaveChanges();
+            //        item.Password = psw.MD5Encoding(item.Account);
             //    }
-
+            //    club.SaveChanges();
             //}
-
-            //using (var db= new ClubEntities())
-            //{
-            //    var user = db.User.FirstOrDefault(a => a.Id == 2);
-            //    if (user != null)
-            //    {
-            //        db.User.Remove(user);
-            //        db.SaveChanges();
-            //    }
-
-            //}
-
-            //using (var db=new ClubEntities())
-            //{
-
-            //    var user = db.User.FirstOrDefault(a => a.Id == 3);
-            //    if (user != null)
-            //    {
-            //        user.Name = "软件153的用户";
-            //    }
-            //    db.SaveChanges();
-            //}
-
-            //using (var db=new ClubEntities())
-            //{
-
-            //    var users = db.User.Where(t => t.Id < 10).ToList();
-
-            //    var sb=new StringBuilder();
-            //    foreach (var item in users)
-            //    {
-            //        sb.AppendLine("用户名：" + item.Name+"用户级别："+item.Level.Name);
-            //    }
-            //    return Content(sb.ToString());
-
-            //}
-
-            //using (var db=new ClubEntities())
-            //{
-            //    var users = db.User.ToList();
-            //    foreach (var user in users)
-            //    {
-            //        //var pw = EncryptHelper.MD5Encoding(user.PassWord, user.Account);
-            //        user.PassWord = "000000".MD5Encoding(user.Account);
-            //    }
-            //    db.SaveChanges();
-            //}
-
-           // var pw = EncryptHelper.MD5Encoding("000000","yongjiasoft");
-
 
             return View();
         }
 
-        
+        public ActionResult Contact()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
     }
 }
