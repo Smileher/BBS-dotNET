@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Webdiyer.WebControls.Mvc;
 using Club;
 using Club.Models;
+using static Club.AuthFilter;
 
 namespace Club.Controllers
 {
@@ -29,11 +30,11 @@ namespace Club.Controllers
             var key = Request["key"].ToInt();
             var value = Request["value"];
             var listpost=new List<ListPostModel>();
-            using (var db = new ClubEntitie())
+            using (var db = new Entities())
             {
-                var type = db.Type.ToList();
+                var type = db.Category.ToList();
                 ViewBag.type = type;
-                var post = db.Post.OrderByDescending(a => a.id).Include(a => a.User).Include(a => a.Type).Where(a => a.IsFeatured == true).ToList();
+                var post = db.Post.OrderByDescending(a => a.Id).Include(a => a.User).Include(a => a.Category).Where(a => a.IsFeatured == true).ToList();
                 //按帖子类型查找
                 switch(key)
                 {
@@ -47,25 +48,25 @@ namespace Club.Controllers
                         //typeid==0  全部帖子
                         if(typeid!=0)
                         {
-                            post = post.Where(a => a.Typeid == typeid).ToList();
+                            post = post.Where(a => a.CategoryId == typeid).ToList();
                         }                        
                         break;
                 }                
                 foreach (var item in post)
                 {
                     var postModel = new ListPostModel();
-                    var reply = db.Reply.Where(a => a.id == item.id);
-                    postModel.id = item.id;
-                    postModel.title = item.Title;
-                    postModel.userid = item.Userid;
-                    postModel.username = item.User.Name;
-                    postModel.image = item.User.Image;
-                    postModel.time = item.Time;
-                    postModel.visit = item.Visit;
-                    postModel.relpy = reply.Count();
-                    if(item.Essence==1)
+                    var reply = db.Reply.Where(a => a.Id == item.Id);
+                    postModel.Id = item.Id;
+                    postModel.Title = item.Title;
+                    postModel.Userid = item.UserId;
+                    postModel.Username = item.User.Name;
+                    postModel.Image = item.User.Image;
+                    postModel.Time = item.CreateTime;
+                    postModel.Visit = item.ViewCount;
+                    postModel.Relpy = reply.Count();
+                    if(item.IsFeatured == true)
                     {
-                        postModel.essence = "精";
+                        postModel.Essence = "精";
                     }
                     listpost.Add(postModel);
                 }
@@ -93,9 +94,9 @@ namespace Club.Controllers
         [UserCheck(IsNeed = true)]
         public ActionResult New()
         {
-            using (var db=new ClubEntitie())
+            using (var db=new Entities())
             {
-                var type = db.Type.ToList();
+                var type = db.Category.ToList();
                 ViewBag.type = type;
             }
             return View();
@@ -109,15 +110,16 @@ namespace Club.Controllers
             var title = Request["title"];
             var content = Request["content"];
             var loginUser = (User)Session["loginuser"];
-            using (var db=new ClubEntitie())
+            using (var db=new Entities())
             {
-                var post = new Post();
-                post.Title = title;
-                post.Contents = content;
-                post.Userid = loginUser.id;
-                post.Typeid = typeId;
-                post.System = "Win10";
-                post.Time = DateTime.Now;
+                var post = new Post {
+                    Title = title,
+                    Content = content,
+                    UserId = loginUser.Id,
+                    CategoryId = typeId,
+                    Sysinfo = "Win10",
+                    CreateTime = DateTime.Now
+                };
                 db.Post.Add(post);
                 db.SaveChanges();
             }            
@@ -132,42 +134,43 @@ namespace Club.Controllers
             var postid = Request["postid"].ToInt();
             if(postid!=0)
             {
-                using (var db=new ClubEntitie())
+                using (var db=new Entities())
                 {
-                    var post = db.Post.Include(a=>a.User).Include(a => a.Type).FirstOrDefault(a => a.id == postid);
-                    var user = db.User.OrderByDescending(a => a.id).Include(a => a.Level).ToList();                    
+                    var post = db.Post.Include(a=>a.User).Include(a => a.Category).FirstOrDefault(a => a.Id == postid);
+                    var user = db.User.OrderByDescending(a => a.Id).Include(a => a.Level).ToList();                    
                     ViewBag.User = user;
                     //查询赞帖子的用户
-                    var praiserecord = db.PraiseRecord.OrderByDescending(a => a.id).Include(a => a.User).ToList();
+                    var praiserecord = db.PraiseRecord.OrderByDescending(a => a.Id).Include(a => a.User).ToList();
                     ViewBag.praiserecord = praiserecord;
                     var listpraiserecord = new List<PraiserecordModel>();
                     foreach (var item in praiserecord)
                     {
-                        var praiserecordmodel = new PraiserecordModel();
-                        praiserecordmodel.postid = item.Postid;
-                        praiserecordmodel.userid = item.Userid;
-                        praiserecordmodel.username = item.User.Name;
-                        praiserecordmodel.userimage = item.User.Image;
-                        praiserecordmodel.time = item.CreateTime;
+                        var praiserecordmodel = new PraiserecordModel {
+                            postid = item.PostId,
+                            userid = item.UserId,
+                            username = item.User.Name,
+                            userimage = item.User.Image,
+                            time = item.CreateTime
+                        };
                         listpraiserecord.Add(praiserecordmodel);
                     }
                     ViewData["praiserecord"] = listpraiserecord;
                     //查询收藏帖子的用户
-                    var collection = db.Collection.OrderByDescending(a => a.id).Include(a => a.User).ToList();                    
+                    var collection = db.Collection.OrderByDescending(a => a.Id).Include(a => a.User).ToList();                    
                     ViewBag.collection = collection;
                     //查询帖子回复的信息
-                    var reply = db.Reply.OrderByDescending(a => a.id).Include(a => a.User).Where(a=>a.Postid==postid).ToList();                    
+                    var reply = db.Reply.OrderByDescending(a => a.Id).Include(a => a.User).Where(a=>a.PostId == postid).ToList();                    
                     var listreply = new List<ReplyModel>();
                     foreach(var item in reply)
                     {
                         var replyModel = new ReplyModel();
-                        replyModel.postid = item.Postid;
-                        replyModel.userid = item.Userid;
+                        replyModel.postid = item.PostId;
+                        replyModel.userid = item.UserId;
                         replyModel.username = item.User.Name;
                         replyModel.userlevel = item.User.Level.Name;
                         replyModel.userimage = item.User.Image;
-                        replyModel.content = item.Contents;
-                        replyModel.recoverytime = item.Recoverytime;
+                        replyModel.content = item.Content;
+                        replyModel.recoverytime = item.CreateTime;
                         listreply.Add(replyModel);
                     }
                     ViewData["reply"] = listreply;                    
@@ -186,28 +189,28 @@ namespace Club.Controllers
             int postid = Request["postid"].ToInt();
             int userid = Request["userid"].ToInt();
             string content = Request["content"].ToString();
-            using (var db=new ClubEntitie())
+            using (var db=new Entities())
             {
                 var reply = new Reply();
-                reply.Postid = postid;
-                reply.Userid = userid;
-                reply.Contents = content;
-                reply.Recoverytime = DateTime.Now;
+                reply.PostId = postid;
+                reply.UserId = userid;
+                reply.Content = content;
+                reply.CreateTime = DateTime.Now;
                 db.Reply.Add(reply);
                 db.SaveChanges();
                 //查询帖子回复的信息
-                var listreply = db.Reply.OrderByDescending(a => a.id).Include(a => a.User).Where(a => a.Postid == postid).ToList();
+                var listreply = db.Reply.OrderByDescending(a => a.Id).Include(a => a.User).Where(a => a.PostId == postid).ToList();
                 var replyModel = new ReplyModel();
                 var listreplymodel = new List<ReplyModel>();
                 foreach (var item in listreply)
                 {
-                    replyModel.postid = item.Postid;
-                    replyModel.userid = item.Userid;
+                    replyModel.postid = item.PostId;
+                    replyModel.userid = item.UserId;
                     replyModel.username = item.User.Name;
                     replyModel.userlevel = item.User.Level.Name;
                     replyModel.userimage = item.User.Image;
-                    replyModel.content = item.Contents;
-                    replyModel.recoverytime = item.Recoverytime;
+                    replyModel.content = item.Content;
+                    replyModel.recoverytime = item.CreateTime;
                     listreplymodel.Add(replyModel);
                 }
                 if (Request.IsAjaxRequest())
@@ -226,13 +229,13 @@ namespace Club.Controllers
             var key= Request["key"].ToInt();
             var postid = Request["postid"].ToInt();
             var userid = Request["userid"].ToInt();            
-            using (var db = new ClubEntitie())
+            using (var db = new Entities())
             {
                 if(key==1)
                 {
                     var praiserecord = new PraiseRecord();
-                    praiserecord.Postid = postid;
-                    praiserecord.Userid = userid;
+                    praiserecord.PostId = postid;
+                    praiserecord.UserId = userid;
                     praiserecord.CreateTime = DateTime.Now;
                     db.PraiseRecord.Add(praiserecord);
                     db.SaveChanges();
@@ -240,21 +243,21 @@ namespace Club.Controllers
                 else
                 {
                     var collection = new Collection();
-                    collection.Postid = postid;
-                    collection.Userid = userid;
+                    collection.PostId = postid;
+                    collection.UserId = userid;
                     collection.CreateTime = DateTime.Now;
                     db.Collection.Add(collection);
                     db.SaveChanges();
                 }
                 //查询赞帖子的用户
-                var praiserecords = db.PraiseRecord.OrderByDescending(a => a.id).Include(a => a.User).ToList();
+                var praiserecords = db.PraiseRecord.OrderByDescending(a => a.Id).Include(a => a.User).ToList();
                 ViewBag.praiserecord = praiserecords;
                 var listpraiserecord = new List<PraiserecordModel>();
                 foreach (var item in praiserecords)
                 {
                     var praiserecordmodel = new PraiserecordModel();
-                    praiserecordmodel.postid = item.Postid;
-                    praiserecordmodel.userid = item.Userid;
+                    praiserecordmodel.postid = item.PostId;
+                    praiserecordmodel.userid = item.UserId;
                     praiserecordmodel.username = item.User.Name;
                     praiserecordmodel.userimage = item.User.Image;
                     praiserecordmodel.time = item.CreateTime;

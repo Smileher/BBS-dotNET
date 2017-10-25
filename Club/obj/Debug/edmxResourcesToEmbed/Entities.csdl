@@ -49,6 +49,7 @@
     <NavigationProperty Name="Collection" Relationship="Self.FK_Collection_Post" FromRole="Post" ToRole="Collection" />
     <NavigationProperty Name="User" Relationship="Self.FK_Post_User" FromRole="Post" ToRole="User" />
     <NavigationProperty Name="PraiseRecord" Relationship="Self.FK_PraiseRecord_Post" FromRole="Post" ToRole="PraiseRecord" />
+    <NavigationProperty Name="Reply" Relationship="bbs.bangke.comModel.FK_Reply_Post" FromRole="Post" ToRole="Reply" />
   </EntityType>
   <EntityType Name="PraiseRecord">
     <Key>
@@ -89,6 +90,7 @@
     <NavigationProperty Name="Post" Relationship="Self.FK_Post_User" FromRole="User" ToRole="Post" />
     <NavigationProperty Name="PraiseRecord" Relationship="Self.FK_PraiseRecord_User" FromRole="User" ToRole="PraiseRecord" />
     <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Reply" Relationship="bbs.bangke.comModel.FK_Reply_User" FromRole="User" ToRole="Reply" />
   </EntityType>
   <Association Name="FK_Post_Category">
     <End Role="Category" Type="Self.Category" Multiplicity="1" />
@@ -210,5 +212,50 @@
       <End Role="User" EntitySet="User" />
       <End Role="PraiseRecord" EntitySet="PraiseRecord" />
     </AssociationSet>
+    <EntitySet Name="Reply" EntityType="bbs.bangke.comModel.Reply" />
+    <AssociationSet Name="FK_Reply_Post" Association="bbs.bangke.comModel.FK_Reply_Post">
+      <End Role="Post" EntitySet="Post" />
+      <End Role="Reply" EntitySet="Reply" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reply_User" Association="bbs.bangke.comModel.FK_Reply_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Reply" EntitySet="Reply" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="Reply">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="PostId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Content" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Post" Relationship="bbs.bangke.comModel.FK_Reply_Post" FromRole="Reply" ToRole="Post" />
+    <NavigationProperty Name="User" Relationship="bbs.bangke.comModel.FK_Reply_User" FromRole="Reply" ToRole="User" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <Association Name="FK_Reply_Post">
+    <End Type="bbs.bangke.comModel.Post" Role="Post" Multiplicity="1" />
+    <End Type="bbs.bangke.comModel.Reply" Role="Reply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reply">
+        <PropertyRef Name="PostId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reply_User">
+    <End Type="bbs.bangke.comModel.User" Role="User" Multiplicity="1" />
+    <End Type="bbs.bangke.comModel.Reply" Role="Reply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reply">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

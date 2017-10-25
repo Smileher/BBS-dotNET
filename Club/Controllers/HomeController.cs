@@ -13,7 +13,7 @@ namespace Club.Controllers
         public ActionResult Index()
         {
 
-            using (var club = new ClubEntitie())
+            using (var club = new Entities())
             {
                 //添加
                 //var level = new Level();

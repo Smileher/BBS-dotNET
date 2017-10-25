@@ -229,6 +229,7 @@
     <Compile Include="Collection.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -256,6 +257,10 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PostModel.cs" />
+    <Compile Include="Models\PraiserecordModel.cs" />
+    <Compile Include="Models\ReplyModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
@@ -269,6 +274,9 @@
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reply.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>Entities.tt</DependentUpon>
@@ -846,6 +854,52 @@
     <Content Include="bin\System.Web.WebPages.dll" />
     <Content Include="bin\System.Web.WebPages.Razor.dll" />
     <Content Include="bin\WebGrease.dll" />
+    <Content Include="Content\css\animate.css" />
+    <Content Include="Content\css\base.css" />
+    <Content Include="Content\css\base.css-v=2.2.0.css" />
+    <Content Include="Content\css\common.css" />
+    <Content Include="Content\css\jquery.fancybox.css-v=2.1.5.css" />
+    <Content Include="Content\css\main.css" />
+    <Content Include="Content\font-awesome\css\font-awesome.css-v=4.3.0.css" />
+    <Content Include="Content\img\blank.gif" />
+    <Content Include="Content\img\fancybox_loading%402x.gif" />
+    <Content Include="Content\img\fancybox_loading.gif" />
+    <Content Include="Content\img\fancybox_overlay.png" />
+    <Content Include="Content\img\fancybox_sprite%402x.png" />
+    <Content Include="Content\img\fancybox_sprite.png" />
+    <Content Include="Content\img\favicon.ico" />
+    <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\pbg.jpg" />
+    <Content Include="Content\img\pic_01.gif" />
+    <Content Include="Content\img\pic_02.gif" />
+    <Content Include="Content\img\浼氬憳.png" />
+    <Content Include="Content\img\甯栧瓙.png" />
+    <Content Include="Content\img\绮惧崕.png" />
+    <Content Include="Content\js\bootstrap\3.3.4\css\bootstrap.min.css" />
+    <Content Include="Content\js\bootstrap\3.3.4\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\js\bootstrap\3.3.5\js\bootstrap.min.js" />
+    <Content Include="Content\js\jquery-3.2.1.slim.min.js" />
+    <Content Include="Content\js\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Content\js\jquery\1.11.3\jquery.min.js" />
+    <Content Include="Content\js\jweixin-1.0.0.js" />
+    <Content Include="Content\js\vendor\layer\layer.js" />
+    <Content Include="Content\js\vendor\layer\skin\layer.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\userimages\0.jpg" />
+    <Content Include="Content\userimages\00.png" />
+    <Content Include="Content\userimages\1.jpg" />
+    <Content Include="Content\userimages\logo.png" />
+    <Content Include="Content\userimages\pbg.jpg" />
+    <Content Include="Content\userimages\pic_01.gif" />
+    <Content Include="Content\userimages\pic_02.gif" />
+    <Content Include="Content\userimages\search.gif" />
+    <Content Include="Content\userimages\会员.png" />
+    <Content Include="Content\userimages\帖子.png" />
+    <Content Include="Content\userimages\精华.png" />
+    <Content Include="Content\wangEditor\wangEditor.css" />
+    <Content Include="Content\wangEditor\wangEditor.js" />
+    <Content Include="Content\wangEditor\wangEditor.min.css" />
+    <Content Include="Content\wangEditor\wangEditor.min.js" />
     <Content Include="Entities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Entities.edmx</DependentUpon>
@@ -878,6 +932,15 @@
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
     <Content Include="bin\Club.dll.config" />
     <Content Include="bin\ApplicationInsights.config" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Post\Index.cshtml" />
+    <Content Include="Views\Post\New.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Web.config" />
@@ -926,17 +989,30 @@
     <Content Include="Assets\scripts\Script__4B1CC929B4E0D4A0" />
     <Content Include="Assets\scripts\Script__5931B35C33207CED" />
     <Content Include="Areas\Admin\Views\Post\EditCategory.cshtml" />
+    <Content Include="Content\font-awesome\fonts\fontawesome-webfont.eot-" />
+    <Content Include="Content\font-awesome\fonts\fontawesome-webfont.eot-v=4.4.0" />
+    <Content Include="Content\font-awesome\fonts\fontawesome-webfont.svg-v=4.4.0" />
+    <Content Include="Content\font-awesome\fonts\fontawesome-webfont.ttf-v=4.4.0" />
+    <Content Include="Content\font-awesome\fonts\fontawesome-webfont.woff-v=4.4.0" />
+    <Content Include="Content\font-awesome\fonts\fontawesome-webfont.woff2-v=4.4.0" />
+    <Content Include="Content\js\bootstrap\3.3.4\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\js\bootstrap\3.3.4\fonts\glyphicons-halflings-regular.eot-" />
+    <Content Include="Content\js\bootstrap\3.3.4\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\js\bootstrap\3.3.4\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\js\bootstrap\3.3.4\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\wangEditor\fonts\w-e-icon.woff" />
+    <Content Include="Content\wangEditor\wangEditor.min.js.map" />
     <None Include="packages.config" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Post\Index.cshtml" />
-    <Content Include="Views\Post\New.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\User\Login.cshtml" />
-    <Content Include="Views\User\Register.cshtml" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Post\Browse.cshtml" />
+    <Content Include="Views\Post\Search.cshtml" />
+    <Content Include="Views\Post\_Comment.cshtml" />
+    <Content Include="Views\Post\_Post.cshtml" />
+    <Content Include="Views\Post\_PraiseRecord.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\_Dynamic.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

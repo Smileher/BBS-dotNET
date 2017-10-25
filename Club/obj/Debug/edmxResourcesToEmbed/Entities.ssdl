@@ -51,6 +51,16 @@
     <Property Name="PostId" Type="int" Nullable="false" />
     <Property Name="CreateTime" Type="datetime" Nullable="false" />
   </EntityType>
+  <EntityType Name="Reply">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="PostId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+  </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
       <PropertyRef Name="diagram_id" />
@@ -148,6 +158,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Reply_Post">
+    <End Role="Post" Type="Self.Post" Multiplicity="1" />
+    <End Role="Reply" Type="Self.Reply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reply">
+        <PropertyRef Name="PostId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reply_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Reply" Type="Self.Reply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reply">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_User_Level1">
     <End Role="Level" Type="Self.Level" Multiplicity="1" />
     <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -166,6 +200,7 @@
     <EntitySet Name="Level" EntityType="Self.Level" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PraiseRecord" EntityType="Self.PraiseRecord" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reply" EntityType="Self.Reply" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Collection_Post" Association="Self.FK_Collection_Post">
@@ -191,6 +226,14 @@
     <AssociationSet Name="FK_PraiseRecord_User" Association="Self.FK_PraiseRecord_User">
       <End Role="User" EntitySet="User" />
       <End Role="PraiseRecord" EntitySet="PraiseRecord" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reply_Post" Association="Self.FK_Reply_Post">
+      <End Role="Post" EntitySet="Post" />
+      <End Role="Reply" EntitySet="Reply" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reply_User" Association="Self.FK_Reply_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Reply" EntitySet="Reply" />
     </AssociationSet>
     <AssociationSet Name="FK_User_Level1" Association="Self.FK_User_Level1">
       <End Role="Level" EntitySet="Level" />

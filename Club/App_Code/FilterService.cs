@@ -31,7 +31,23 @@ namespace Club
             return;
 
         }
-
+        public class UserCheck:ActionFilterAttribute
+        {
+            public bool IsNeed { get; set; } = false;
+            public override void OnActionExecuting(ActionExecutingContext filterContext) {
+                if(!IsNeed) {
+                    base.OnActionExecuting(filterContext);
+                    return;
+                }
+                var loginuser = (User)filterContext.HttpContext.Session["loginuser"];
+                if(loginuser == null) {
+                    filterContext.HttpContext.Response.Redirect("/User/Login");
+                    return;
+                }
+                base.OnActionExecuting(filterContext);
+                return;
+            }
+        }
 
 
         //var loginUser = filterContext.HttpContext.Session["loginUser"];

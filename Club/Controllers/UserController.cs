@@ -21,9 +21,9 @@ namespace Club.Controllers
             int id = userid.ToInt();
             if(id!=0)
             {
-                using (var db=new ClubEntitie())
+                using (var db=new Entities())
                 {
-                    var user = db.User.OrderByDescending(a => a.id).Include(a => a.Level).FirstOrDefault(a => a.id == id);
+                    var user = db.User.OrderByDescending(a => a.Id).Include(a => a.Level).FirstOrDefault(a => a.Id == id);
                     Session["browseuser"] = user;
                 }
             }
@@ -50,16 +50,16 @@ namespace Club.Controllers
                 TempData["login"] = "用户名或密码不能为空";
                 return RedirectToAction("Login");
             }
-            using (var club = new ClubEntitie())
+            using (var club = new Entities())
             {
                 UserLogin.Password = UserLogin.Password.MD5Encoding(UserLogin.Account);
-                var user = club.User.OrderByDescending(a => a.id).Include(a =>a.Level).FirstOrDefault(a => a.Account == UserLogin.Account);
+                var user = club.User.OrderByDescending(a => a.Id).Include(a =>a.Level).FirstOrDefault(a => a.Account == UserLogin.Account);
                 if (user == null)
                 {
                     TempData["login"] = "用户名不存在";
                     return RedirectToAction("Login");
                 }
-                if (user.Password != UserLogin.Password)
+                if (user.PassWord != UserLogin.Password)
                 {
                     TempData["login"] = "密码错误";
                     TempData["account"] = UserLogin.Account;
@@ -82,7 +82,7 @@ namespace Club.Controllers
         [HttpPost]
         public ActionResult Register(UserRegister UserRegister)
         {
-            using (var db=new ClubEntitie())
+            using (var db=new Entities())
             {
                 var user = db.User.ToList();
                 foreach(var item in user)
@@ -96,9 +96,9 @@ namespace Club.Controllers
                 var useradd = new User();
                 useradd.Account = UserRegister.Account;
                 useradd.Name = UserRegister.Name;
-                useradd.Password = UserRegister.Password.MD5Encoding(UserRegister.Account);
-                useradd.Levelid = 1;
-                useradd.RegistrationTime = DateTime.Now;
+                useradd.PassWord = UserRegister.Password.MD5Encoding(UserRegister.Account);
+                useradd.LevelId = 1;
+                useradd.CreateTime = DateTime.Now;
                 db.User.Add(useradd);
                 db.SaveChanges();
                 ShowMassage("注册成功，请登录");

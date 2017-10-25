@@ -56,6 +56,16 @@
           <Property Name="PostId" Type="int" Nullable="false" />
           <Property Name="CreateTime" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="Reply">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="PostId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -153,6 +163,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Reply_Post">
+          <End Role="Post" Type="Self.Post" Multiplicity="1" />
+          <End Role="Reply" Type="Self.Reply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reply">
+              <PropertyRef Name="PostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reply_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Reply" Type="Self.Reply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reply">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_Level1">
           <End Role="Level" Type="Self.Level" Multiplicity="1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -171,6 +205,7 @@
           <EntitySet Name="Level" EntityType="Self.Level" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PraiseRecord" EntityType="Self.PraiseRecord" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reply" EntityType="Self.Reply" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Collection_Post" Association="Self.FK_Collection_Post">
@@ -196,6 +231,14 @@
           <AssociationSet Name="FK_PraiseRecord_User" Association="Self.FK_PraiseRecord_User">
             <End Role="User" EntitySet="User" />
             <End Role="PraiseRecord" EntitySet="PraiseRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reply_Post" Association="Self.FK_Reply_Post">
+            <End Role="Post" EntitySet="Post" />
+            <End Role="Reply" EntitySet="Reply" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reply_User" Association="Self.FK_Reply_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Reply" EntitySet="Reply" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Level1" Association="Self.FK_User_Level1">
             <End Role="Level" EntitySet="Level" />
@@ -255,6 +298,7 @@
           <NavigationProperty Name="Collection" Relationship="Self.FK_Collection_Post" FromRole="Post" ToRole="Collection" />
           <NavigationProperty Name="User" Relationship="Self.FK_Post_User" FromRole="Post" ToRole="User" />
           <NavigationProperty Name="PraiseRecord" Relationship="Self.FK_PraiseRecord_Post" FromRole="Post" ToRole="PraiseRecord" />
+          <NavigationProperty Name="Reply" Relationship="bbs.bangke.comModel.FK_Reply_Post" FromRole="Post" ToRole="Reply" />
         </EntityType>
         <EntityType Name="PraiseRecord">
           <Key>
@@ -295,6 +339,7 @@
           <NavigationProperty Name="Post" Relationship="Self.FK_Post_User" FromRole="User" ToRole="Post" />
           <NavigationProperty Name="PraiseRecord" Relationship="Self.FK_PraiseRecord_User" FromRole="User" ToRole="PraiseRecord" />
           <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Reply" Relationship="bbs.bangke.comModel.FK_Reply_User" FromRole="User" ToRole="Reply" />
         </EntityType>
         <Association Name="FK_Post_Category">
           <End Role="Category" Type="Self.Category" Multiplicity="1" />
@@ -416,7 +461,52 @@
             <End Role="User" EntitySet="User" />
             <End Role="PraiseRecord" EntitySet="PraiseRecord" />
           </AssociationSet>
+          <EntitySet Name="Reply" EntityType="bbs.bangke.comModel.Reply" />
+          <AssociationSet Name="FK_Reply_Post" Association="bbs.bangke.comModel.FK_Reply_Post">
+            <End Role="Post" EntitySet="Post" />
+            <End Role="Reply" EntitySet="Reply" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reply_User" Association="bbs.bangke.comModel.FK_Reply_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Reply" EntitySet="Reply" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Reply">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="PostId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Content" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Post" Relationship="bbs.bangke.comModel.FK_Reply_Post" FromRole="Reply" ToRole="Post" />
+          <NavigationProperty Name="User" Relationship="bbs.bangke.comModel.FK_Reply_User" FromRole="Reply" ToRole="User" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <Association Name="FK_Reply_Post">
+          <End Type="bbs.bangke.comModel.Post" Role="Post" Multiplicity="1" />
+          <End Type="bbs.bangke.comModel.Reply" Role="Reply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reply">
+              <PropertyRef Name="PostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reply_User">
+          <End Type="bbs.bangke.comModel.User" Role="User" Multiplicity="1" />
+          <End Type="bbs.bangke.comModel.Reply" Role="Reply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reply">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -503,6 +593,17 @@
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
                 <ScalarProperty Name="IsAbort" ColumnName="IsAbort" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reply">
+            <EntityTypeMapping TypeName="bbs.bangke.comModel.Reply">
+              <MappingFragment StoreEntitySet="Reply">
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

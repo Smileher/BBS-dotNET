@@ -19,6 +19,9 @@
         <AssociationConnector Association="bbs.bangke.comModel.FK_Post_User" ManuallyRouted="false" />
         <AssociationConnector Association="bbs.bangke.comModel.FK_PraiseRecord_Post" ManuallyRouted="false" />
         <AssociationConnector Association="bbs.bangke.comModel.FK_PraiseRecord_User" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="bbs.bangke.comModel.Reply" Width="1.5" PointX="10.5" PointY="6.75" />
+        <AssociationConnector Association="bbs.bangke.comModel.FK_Reply_Post" />
+        <AssociationConnector Association="bbs.bangke.comModel.FK_Reply_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

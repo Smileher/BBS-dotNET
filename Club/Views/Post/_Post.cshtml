@@ -7,28 +7,28 @@
     @{
         foreach (var item in Model)
         {
-            string time = item.time.ToString();                        
+            string time = item.Time.ToString();                        
             string year = time.Substring(2,2)+"年";
             string month = time.Substring(5,2)+"月";
             string day = time.Substring(8, 2)+"日";
             string hour= time.Substring(11,5);
             <li class="ux-w-100 bod-b-1 inline-flex f-wrap f-just-b ma-t-20 ma_list ma_list" style="cursor: pointer;">
                 <div class="ux-w-80">
-                    <a class="left ma-r-15" href="/User/Index?userid=@item.userid"><img class="uz-w-40 uz-h-40 bd-r-4" src="@item.image"></a>
-                    <div class="ma-l-15 ux-w-100 browse" data-cid="@item.id">
-                        <h5 class="ma-0 ma-t-2">@item.title</h5>
-                        <span class="ma-t-6 f-s-10">@item.username</span>
+                    <a class="left ma-r-15" href="/User/Index?userid=@item.Userid"><img class="uz-w-40 uz-h-40 bd-r-4" src="@item.Image"></a>
+                    <div class="ma-l-15 ux-w-100 browse" data-cid="@item.Id">
+                        <h5 class="ma-0 ma-t-2">@item.Title</h5>
+                        <span class="ma-t-6 f-s-10">@item.Username</span>
                         <span class="ma-t-6 f-s-10">@year@month@day @hour</span>
                     </div>
                 </div>
-                <div class="browse" data-cid="@item.id">
+                <div class="browse" data-cid="@item.Id">
                     <div class="f-c-gray uz-w-40 left">
                         <i class="iconfont icon-iconview"></i>
-                        <div>@item.visit</div>
+                        <div>@item.Visit</div>
                     </div>
                     <div class="f-c-gray uz-w-40 left">
                         <i class="iconfont icon-iconview"></i>
-                        <div>@item.relpy</div>
+                        <div>@item.Relpy</div>
                     </div>
                 </div>
             </li>
