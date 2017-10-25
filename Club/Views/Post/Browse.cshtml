@@ -37,20 +37,20 @@
                     {
                         foreach (var item in ViewBag.praiserecord)
                         {
-                            if (Model.id == item.postid && user.id == item.userid)
+                            if (Model.Id == item.postid && user.Id == item.userid)
                             {
                                 praise = 1;
                             }
                         }
                         foreach(var item in ViewBag.collection)
                         {
-                            if (Model.id == item.Postid && user.id == item.Userid)
+                            if (Model.Id == item.PostId && user.Id == item.UserId)
                             {
                                 collection = 2;
                             }
                         }
                         <div class="uz-w-180 right">
-                            <input id="userid" type="hidden" name="@user.id" />
+                            <input id="userid" type="hidden" name="@user.Id" />
                             <a href='/User' class="ma-r-4">
                                 <img alt="image" src="@user.Image" width="26" height="26" class="bd-r-13" />
                                 <span class="ma-r-15 f-c-gray">@user.Name</span>
@@ -73,7 +73,7 @@
                 }
             </div>
             <!--蓝条-->
-            <div class="blue-bar"><a href="#">主页</a> / <a>@Model.Type.Name</a></div>
+            <div class="blue-bar"><a href="#">主页</a> / <a>@Model.Category.Name</a></div>
             <!--main-->
             <div class="ux-w-94 bod-t-1 ma-t-25 max-l-3 height_auto">
                 <div class="col-lg-12  bg-c-white pa-t-20">
@@ -82,7 +82,7 @@
                         <div class="f-s-16">
                             @{
                                 var essence = "";
-                                if (Model.Essence == 1)
+                                if (Model.IsFeatured == true)
                                 {
                                     essence = "精华贴";
                                 }
@@ -101,7 +101,7 @@
                                 @{
                                     foreach (var item in ViewBag.User)
                                     {
-                                        if (item.id == Model.Userid)
+                                        if (item.Id == Model.UserId)
                                         {
                                             <i></i><!--图标-->
                                             @item.Level.Name;
@@ -111,7 +111,7 @@
                             </span>
                             <span class="f-c-gray ma-l-15">
                                 @{
-                                    string time = Model.Time.ToString();
+                                    string time = Model.CreateTime.ToString();
                                     string year = time.Substring(2, 2) + "年";
                                     string month = time.Substring(5, 2) + "月";
                                     string day = time.Substring(8, 2) + "日";
@@ -122,13 +122,13 @@
                             </span>
                             <span class="f-c-gray ma-l-10">
                                 <i></i><!--图标-->
-                                @Model.System
+                                @Model.Sysinfo
                             </span>
                         </div>
                     </div>
                     <!--内容-->
                     <div class="bg-c-white ma-t-30">
-                        @Html.Raw(Model.Contents.ToString())
+                        @Html.Raw(Model.Content.ToString())
                     </div>
                     <!--赞帖-->
                     @using (Html.BeginForm("Browse", "Post", FormMethod.Get))
@@ -229,7 +229,7 @@
                 $.ajax({
                     type: "POST",
                     url: "/Post/Replysave",
-                    data: "postid=" +@Model.id+"&userid=" + userid + "&content=" + content,
+                    data: "postid=" +@Model.Id+"&userid=" + userid + "&content=" + content,
                     success: function (response) {
                         $('#articles').html(response);
                     }
@@ -270,7 +270,7 @@
                 type: "get",
                 url: "/Post/PraiseCollect",
                 async: true,
-                data: "key="+action+"&postid=" + @Model.id + "&userid=" + userid,
+                data: "key="+action+"&postid=" + @Model.Id + "&userid=" + userid,
                 success: function (response) {
                     $('#praisearticles').html(response);
                 }

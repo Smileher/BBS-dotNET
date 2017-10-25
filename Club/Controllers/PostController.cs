@@ -183,6 +183,7 @@ namespace Club.Controllers
         /// 帖子回复
         /// </summary>
         /// <returns></returns>
+        ///[HttpPost]
         [ValidateInput(false)]//允许传html代码格式的值
         public ActionResult Replysave()
         {
@@ -191,11 +192,12 @@ namespace Club.Controllers
             string content = Request["content"].ToString();
             using (var db=new Entities())
             {
-                var reply = new Reply();
-                reply.PostId = postid;
-                reply.UserId = userid;
-                reply.Content = content;
-                reply.CreateTime = DateTime.Now;
+                var reply = new Reply {
+                    PostId = postid,
+                    UserId = userid,
+                    Content = content,
+                    CreateTime = DateTime.Now
+                };
                 db.Reply.Add(reply);
                 db.SaveChanges();
                 //查询帖子回复的信息
