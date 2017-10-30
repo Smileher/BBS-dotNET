@@ -1013,6 +1013,9 @@
     <Content Include="Views\Post\_PraiseRecord.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\_Dynamic.cshtml" />
+    <Content Include="Views\User\_MyDynamic.cshtml" />
+    <Content Include="Views\User\_MyPost.cshtml" />
+    <Content Include="Views\User\_MyReply.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

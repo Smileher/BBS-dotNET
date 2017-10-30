@@ -2,6 +2,8 @@
     ViewBag.Title = "Index";
     Layout = null;
 }
+@using Webdiyer.WebControls.Mvc
+@model PagedList<Post>
 <!doctype html>
 <html>
 <head>
@@ -19,86 +21,107 @@
     <div class="flex f-wrap f-just-s">
         <div id="all" class="bg-rgba-white ux-w-80">
             @{
-                var user= (User)Session["loginuser"];
-                if(user==null)
-                {
-                    user= (User)Session["browseuser"];
-                }
+                var user = ViewBag.User;
+                //if(user==null)
+                //{
+                //    user= (User)Session["browseuser"];
+                //}
                 <!--header-->
                 <div class="uz-h-55 pa-t-15">
                     <div class="ma-l-30">
-                        <a href="#" class="culb">6789Club</a>
-                        <div class="left ma-l-15">
-                            <input type="text" class="search" placeholder="请输入您需要查找的内容 …" />
-                        </div>
+                        <a href="/Post" class="culb">6789Club</a>
+                        @*<div class="left ma-l-15">
+                                <input type="text" class="search" placeholder="请输入您需要查找的内容 …" />
+                            </div>*@
                     </div>
-                    <div class="uz-w-180 right ma-r-15">
-                        <a href='/User' class="ma-r-4">
-                            <img alt="image" src="@user.Image" width="26" height="26" class="bd-r-13" />
-                            <span class="ma-r-15 f-c-gray">@user.Name</span>
-                        </a>
-                        <a href="/Notice" class="ma-r-4">
-                            <img alt="image" src="/Content/img/pic_01.gif" width="26" height="26" />
-                        </a>
-                        <a href="/User/Introduction">
-                            <img src="/Content/img/pic_02.gif" width="26" height="26" />
-                        </a>
-                    </div>
+                    @{
+                        if(Session["loginuser"] != null) {
+                            <div class="uz-w-180 right ma-r-15">
+                                <input id="userid" type="hidden" name="@user.Id" />
+                                <a href='/User' class="ma-r-4">
+                                    <img alt="image" src="@user.Image" width="26" height="26" class="bd-r-13" />
+                                    <span class="ma-r-15 f-c-gray">@user.Name</span>
+                                </a>
+                                <a href="/Notice" class="ma-r-4">
+                                    <img alt="image" src="/Content/img/pic_01.gif" width="26" height="26" />
+                                </a>
+                                <a href="/User/Introduction">
+                                    <img src="/Content/img/pic_02.gif" width="26" height="26" />
+                                </a>
+                            </div>
+                        }
+                        else {
+                            <div class="uz-w-180 right ma-r-15">
+                                <a href="/User/Login" class="wx bg-c-blue ma-r-4">登录</a> <a href="#" class="wx bg-c-green gd">更多精彩</a>
+                                <div class="or">or</div>
+                            </div>
+                        }
+                    }
                 </div>
                 <!--蓝条-->
-                <div class="blue-bar"><a href="/Post">主页</a> / <a href="#">用户资料</a></div>
+                        <div class="blue-bar"><a href="/Post">主页</a> / <a href="#">用户资料</a></div>
                 <!--main-->
-                    <div class="inline-flex f-wrap f-just-s ux-w-100 ma-b-30">
-                        <div class="ma-t-20 ux-w-95">
-                            <div class="container ux-w-100 ma-t-10">
-                                <div class="row">
-                                    <div class="col-md-7 pa-0">
-                                        <div class="ux-w-100 uz-h-4 bg-c-white2"></div>
-                                        <div class="bg-c-white">
-                                            <div class="f-s-14 pa-t-14 pa-b-7 pa-l-15 f-c-gray f-w-b">我的动态</div>
-                                            <div class="height_auto pa-t-15">
-                                                <ul class="user_tab height_auto ma-0 pa-l-20">
-                                                    <li class="user_tab_li"><a href="#" class="f-c-gray dis_b">帖子</a></li>
-                                                    <li class="user_tab_lis"><a href="#" class="f-c-gray_2 dis_b">回复</a></li>
-                                                    <li class="user_tab_lis"><a href="#" class="f-c-gray_2 dis_b">收藏</a></li>
-                                                    <li class="user_tab_lis"><a href="#" class="f-c-gray_2 dis_b">粉丝</a></li>
-                                                </ul>
-                                                <div class="ux-w-100 uz-h-1 bg-c-gray" style="margin-top:-1px;"></div>
+                        <div class="inline-flex f-wrap f-just-s ux-w-100 ma-b-30">
+                            <div class="ma-t-20 ux-w-95">
+                                <div class="container ux-w-100 ma-t-10">
+                                    <div class="row">
+                                        <div class="col-md-7 pa-0">
+                                            <div class="ux-w-100 uz-h-4 bg-c-white2"></div>
+                                            <div class="bg-c-white">
+                                                <div class="f-s-14 pa-t-14 pa-b-7 pa-l-15 f-c-gray f-w-b">我的动态</div>
+                                                <div class="height_auto pa-t-15">
+                                                    <ul class="user_tab height_auto ma-0 pa-l-20">
+                                                        <li class="user_tab_li" name="1"><a class="f-c-gray dis_b">帖子</a></li>
+                                                        <li class="user_tab_lis" name="2"><a class="f-c-gray_2 dis_b">回复</a></li>
+                                                        @{
+                                                            if(Session["loginuser"] != null) {
+                                                                <li class="user_tab_lis" name="3"><a class="f-c-gray_2 dis_b">收藏</a></li>
+                                                            }
+                                                        }
+                                                        <li class="user_tab_lis" name="4"><a class="f-c-gray_2 dis_b">粉丝</a></li>
+                                                    </ul>
+                                                    <div class="ux-w-100 uz-h-1 bg-c-gray" style="margin-top:-1px;"></div>
+                                                </div>
+                                                @using(Html.BeginForm("Index","User",FormMethod.Get)) {
+                                                    string url = ViewBag.url;
+                                                    <div id="articles" class="mypost">
+                                                        @Html.Partial(url,Model)
+                                                    </div>
+                                                }
                                             </div>
-                                            <div class="pa-t-60 pa-b-80 center f-s-12 f-c-gray_2">暂无数据</div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-4 col-md-offset-1 col-sm-offset-0 bg-c-white pa-0">
-                                        <div class="ux-w-100 uz-h-4 bg-c-white2"></div>
-                                        <div class="f-s-14 pa-t-14 pa-b-7 pa-l-15 f-c-gray f-w-b">用户资料</div>
-                                        <div class="height_auto pa_r">
-                                            <img src="/Content/img/pbg.jpg" class="ux-w-100" />
-                                            <div class="user_head">
-                                            <img src="@user.Image" width="100" height="100" class="bd-r-50 bod-1-white pa" style="left:calc(50% - 50px);top:calc(50% - 50px);" /> </div>
-                                        </div>
-                                        <div class="text-center pa-t-20"> <span class="f-c-gray">@user.Name</span> <span class="f-c-yellows">@user.Level.Name</span> </div>
-                                        <div class="text-center pa-t-15 pa-b-30">
-                                            <p class="f-s-12"> <a href="#" class="ma-r-4">@user.Integral</a><a href="#" class="user_c bd-r-3 ma-l-5"><i class="fa fa-cny"></i>充金币</a> <a href="#" class="user_h bd-r-3"><i class="fa fa-cny"></i>充话费</a> </p>
-                                        </div>
-                                        <div class="ux-w-98 max-l-1 bod-t-1 f-c-gray f-w-b pa-t-35 pa-b-40 height_auto">
-                                            <div class="ux-w-33_3 left center">
-                                                <span>0</span>
-                                                <h5>帖子</h5>
+                                        <div class="col-md-4 col-md-offset-1 col-sm-offset-0 bg-c-white pa-0">
+                                            <div class="ux-w-100 uz-h-4 bg-c-white2"></div>
+                                            <div class="f-s-14 pa-t-14 pa-b-7 pa-l-15 f-c-gray f-w-b">用户资料</div>
+                                            <div class="height_auto pa_r">
+                                                <img src="/Content/img/pbg.jpg" class="ux-w-100" />
+                                                <div class="user_head">
+                                                    <img src="@user.Image" width="100" height="100" class="bd-r-50 bod-1-white pa" style="left:calc(50% - 50px);top:calc(50% - 50px);" />
+                                                </div>
                                             </div>
-                                            <div class="ux-w-33_3 left center">
-                                                <span>0</span>
-                                                <h5>回复</h5>
+                                            <div class="text-center pa-t-20"> <span class="f-c-gray">@user.Name</span> <span class="f-c-yellows">@user.Level.Name</span> </div>
+                                            <div class="text-center pa-t-15 pa-b-30">
+                                                <p class="f-s-12"> <a href="#" class="ma-r-4">@user.Integral</a><a href="#" class="user_c bd-r-3 ma-l-5"><i class="fa fa-cny"></i>充金币</a> <a href="#" class="user_h bd-r-3"><i class="fa fa-cny"></i>充话费</a> </p>
                                             </div>
-                                            <div class="ux-w-33_3 left center">
-                                                <span>0</span>
-                                                <h5>粉丝</h5>
+                                            <div class="ux-w-98 max-l-1 bod-t-1 f-c-gray f-w-b pa-t-35 pa-b-40 height_auto">
+                                                <div class="ux-w-33_3 left center">
+                                                    <span>@ViewBag.postnumber</span>
+                                                    <h5>帖子</h5>
+                                                </div>
+                                                <div class="ux-w-33_3 left center">
+                                                    <span>0</span>
+                                                    <h5>回复</h5>
+                                                </div>
+                                                <div class="ux-w-33_3 left center">
+                                                    <span>0</span>
+                                                    <h5>粉丝</h5>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
             }
             <!--foot-->
             <div class="bg-c-white ma-t-35">
@@ -109,8 +132,10 @@
             </div>
         </div>
     </div>
+    <script src="/Conten/js/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript">$(function () {@{ Ajax.LoadMvcPagerScript(); }});</script>
     <script type="text/javascript">
-        $(function () {
+        $(document).ready(function () {
             $('.user_tab li').click(
                 function () {
                     $(this).removeClass('user_tab_lis').siblings().addClass('user_tab_lis');
@@ -119,8 +144,23 @@
                     $(this).find('a').addClass('f-c-gray');
                     $(this).siblings().find('a').removeClass('f-c-gray');
                     $(this).siblings().find('a').addClass('f-c-gray_2');
+                    var key = $(this).attr('name');
+                    type(key);
                 })
-        })
+            //ajax提交
+            function type(key) {
+                var userid = $('#userid').attr('name');
+                $.ajax({
+                    type: "get",
+                    url: "/User/Index",
+                    async: true,
+                    data: "key=" + key + "&userid=" + userid,
+                    success: function (response) {
+                        $('#articles').html(response);
+                    }
+                });
+            };
+        });
         //根据浏览器宽度自适应
         window.onresize = function () {
             var width = $(window).width();

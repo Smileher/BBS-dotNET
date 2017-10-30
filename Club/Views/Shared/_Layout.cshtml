@@ -5,12 +5,12 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>无标题文档</title>
+    <title>Smileher论坛</title>
     <link href="/Areas/Admin/Assets/styles/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="/Content/css/main.css" />
     <link rel="stylesheet" href="/Content/css/base.css" />
     <link rel="stylesheet" href="/Content/font-awesome/css/font-awesome.css-v=4.3.0.css" />
-    <link rel="icon" href="http://bbs.bangke.com/app/views/img/favicon.ico" mce_href="/app/views/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <script src="/Content/js/jquery/1.11.3/jquery.min.js"></script>
     @*<script src="/Content/js/jquery-3.2.1.slim.min.js" language="javascript" type="text/javascript"></script>*@
     <script src="/Areas/Admin/Assets/scripts/bootstrap.js"></script>
@@ -22,7 +22,7 @@
             <!--header-->
             <div class="uz-h-55 pa-t-15">
                 <div class="ma-l-30">
-                    <a href="/Post/Index" class="culb">6789Club</a>
+                    <a href="/Post/Index" class="culb">Smileher论坛</a>
                     <div class="left ma-l-15  search-main">
                         <input id="keyword" type="text" class="search" placeholder="请输入您需要查找的内容 …" />
                     </div>
@@ -59,9 +59,9 @@
             <div class="inline-flex f-wrap f-just-s ux-w-100">
                 <div class="ma-t-20 ux-w-95">
                     <div class="title pa-t-25 bg-c-white ux-w-100">
-                        <div class="uz-w-60 uz-h-60 bg-c-blue bd-r-30 left ma-r-15 ma-l-30"> <img src="/Content/userimages/logo.png" height="60" width="60" /> </div>
-                        <h3 class="ma-t-10">6789俱乐部·因趣而生</h3>
-                        <p class="f-s-12">定期为有相同兴趣的人提供活动，励志做常州最好玩的俱乐部，加入6789俱乐部，我们带你吃喝玩乐玩转生活，趣味无穷。</p>
+                        <div class="uz-w-60 uz-h-60 bd-r-30 left ma-r-15 ma-l-30"> <img src="/Content/userimages/logo.png" height="60" width="60" /> </div>
+                        <h3 class="ma-t-10">Smileher论坛·因趣而生</h3>
+                        <p class="f-s-12">定期为有相同兴趣的人提供活动，励志做常州大学城最好玩的俱乐部，加入Smileher俱乐部，我们带你吃喝玩乐玩转生活，趣味无穷。</p>
                     </div>
                     <div class="container ux-w-100 ma-t-10">
                         <div class="row">
@@ -73,8 +73,8 @@
             <!--foot-->
             <div class="bg-c-white ma-t-35">
                 <div class="ux-w-98 f-s-13 bod-t-1 ma-l-15 ma-r-15 pa-t-10">
-                    <div class="right ma-b-10">苏ICP备13055054号-2</div>
-                    <div>Copyright © 2016 江苏嬉戏谷科技有限公司</div>
+                    <div class="right ma-b-10">苏ICP备546293253号-1</div>
+                    <div class="center">Copyright © 1996-2017 江苏<a href="http://www.smilehe.website/">Smileher</a>公司</div>
                 </div>
             </div>
         </div>
@@ -125,11 +125,16 @@
                 var keyword = $(this).val();
                 search(1, keyword);
             });
+            //帖子最新发布和回复选择
+            $('.ma_lt').click(function () {
+                var tabid = $(this).attr('name');
+                search(2, tabid);
+            });
             //帖子类型
             $('.ma_rm').click(function () {
                 var typeid = $(this).attr('name');
-                search(3,typeid);
-            });
+                search(3, typeid);
+            }); 
         })
         //ajax提交
         function search(key,value) {

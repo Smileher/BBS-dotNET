@@ -175,6 +175,7 @@ C:\Users\smile\Documents\Project\bbs.bangke.com\Club\obj\Debug\Club.csprojResolv
 C:\Users\smile\Documents\Project\bbs.bangke.com\Club\obj\Debug\Club.csproj.CoreCompileInputs.cache
 C:\Users\smile\Documents\Project\bbs.bangke.com\Club\obj\Debug\Club.dll
 C:\Users\smile\Documents\Project\bbs.bangke.com\Club\obj\Debug\Club.pdb
+E:\Documents\Project\BBS-dotNET\Club\obj\Debug\Club.csproj.CoreCompileInputs.cache
 E:\Documents\Project\BBS-dotNET\Club\bin\ApplicationInsights.config
 E:\Documents\Project\BBS-dotNET\Club\bin\roslyn\csc.exe
 E:\Documents\Project\BBS-dotNET\Club\bin\roslyn\csc.exe.config
@@ -228,7 +229,5 @@ E:\Documents\Project\BBS-dotNET\Club\bin\Club.dll.config
 E:\Documents\Project\BBS-dotNET\Club\bin\Club.dll
 E:\Documents\Project\BBS-dotNET\Club\bin\Club.pdb
 E:\Documents\Project\BBS-dotNET\Club\bin\Webdiyer.MvcPager.dll
-E:\Documents\Project\BBS-dotNET\Club\obj\Debug\Club.csproj.CoreCompileInputs.cache
 E:\Documents\Project\BBS-dotNET\Club\obj\Debug\Club.dll
 E:\Documents\Project\BBS-dotNET\Club\obj\Debug\Club.pdb
-E:\Documents\Project\BBS-dotNET\Club\obj\Debug\Club.csprojResolveAssemblyReference.cache
