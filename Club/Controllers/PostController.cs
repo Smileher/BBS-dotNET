@@ -34,7 +34,7 @@ namespace Club.Controllers
             {
                 var type = db.Category.ToList();
                 ViewBag.type = type;
-                var post = db.Post.OrderByDescending(a => a.Id).Include(a => a.User).Include(a => a.Category).Where(a => a.IsFeatured == true).ToList();
+                var post = db.Post.OrderByDescending(a => a.Id).Include(a => a.User).Include(a => a.Category).Where(a => a.Status == true).ToList();
                 //按帖子类型查找
                 switch(key)
                 {

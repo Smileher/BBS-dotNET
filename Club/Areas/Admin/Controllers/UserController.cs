@@ -125,7 +125,7 @@ namespace Club.Areas.Admin.Controllers
         /// <returns></returns>
         [HttpGet]
         public ActionResult Edit() {
-            var Id = Request["Id"].ToInt();
+            var Id = Request["Id"].ToInt();            
             ViewData["title"] = "编辑用户";
             using(var db = new Entities()) {
                 var user = db.User.Include(a => a.Level).FirstOrDefault(a => a.Id == Id);
@@ -164,7 +164,7 @@ namespace Club.Areas.Admin.Controllers
             var password = Request["password"];
             var levelId = Request["levelId"].ToInt();
             var integral = Request["integral"].ToInt();
-
+            var image = Request["image"];
 
             using(var db = new Entities()) {
                 var user = db.User.FirstOrDefault(a => a.Id == id);
@@ -173,8 +173,7 @@ namespace Club.Areas.Admin.Controllers
                     user = new User {
                         Account = account,
                         Name = name,
-                        IsAdmin = false,
-                        Image = "/Assets/avatars/avatars (1).png",
+                        IsAdmin = false,                        
                         CreateTime = DateTime.Now
                     };
                     db.User.Add(user);
@@ -183,6 +182,7 @@ namespace Club.Areas.Admin.Controllers
                 user.Name = name;
                 user.LevelId = levelId;
                 user.Integral = integral;
+                user.Image = image;
                 if(user.PassWord!=password) {
                     user.PassWord = password.MD5Encoding(account);
                 }

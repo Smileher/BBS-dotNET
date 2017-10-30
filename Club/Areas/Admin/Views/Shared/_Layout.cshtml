@@ -277,7 +277,13 @@
                                 $(this).closest('tr').toggleClass('selected');
                             });
                     });
-
+                    //选择头像
+                    $('.avatars').click(function () {
+                        $(this).addClass('bd-1-gray').siblings().removeClass('bd-1-gray');
+                        var avatarsurl = $(this).attr('src');
+                        $('#avatars').attr('src', avatarsurl);
+                        $('#image').attr('value', avatarsurl);
+                    });
 
 
                     $('[data-rel="tooltip"]').tooltip({ placement: tooltip_placement });
